@@ -1,0 +1,3382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upcycled By — Turn Waste into Value.</title>
+  <meta name="description" content="Upcycled By is a scientific certification for upcycled wine and food products. Grounded in the Double Grip Analysis method developed at Örebro University and Oxford." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #013927;
+      --green-mid: #024d36;
+      --green-light: #0a5c42;
+      --cream: #f4efe4;
+      --cream-light: #faf7f2;
+      --gold: #c8a45a;
+      --gold-light: #ddb96e;
+      --text: #1a1a18;
+      --text-muted: #5a5a50;
+      --white: #ffffff;
+      --radius: 4px;
+      --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--text);
+      background: var(--cream-light);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      height: 68px;
+      background: transparent;
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+    nav.scrolled {
+      background: var(--green);
+      box-shadow: 0 2px 24px rgba(0,0,0,0.18);
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--white);
+    }
+    .nav-logo-icon { width: 68px; height: 68px; object-fit: contain; filter: brightness(0) invert(1); }
+    .nav-logo-text {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    /* ─── LANGUAGE SWITCHER ───────────────────────── */
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      margin-left: 1rem;
+    }
+    .lang-btn {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 0.3rem 0.55rem;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 2px;
+      background: transparent;
+      color: rgba(255,255,255,0.5);
+      cursor: pointer;
+      transition: all var(--transition);
+      line-height: 1;
+    }
+    .lang-btn:hover, .lang-btn.active {
+      background: rgba(200,164,90,0.2);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+    /* Hide Google's default widget banner but keep gadget in DOM so events work */
+    .goog-te-banner-frame, .skiptranslate { display: none !important; }
+    body { top: 0 !important; }
+    #google_translate_element {
+      position: absolute !important;
+      left: -9999px !important;
+      top: -9999px !important;
+      width: 1px !important;
+      height: 1px !important;
+      overflow: hidden !important;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-cta {
+      font-size: 0.75rem !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.14em !important;
+      padding: 0.55rem 1.4rem;
+      background: var(--gold);
+      color: var(--green) !important;
+      border-radius: 2px;
+      transition: background var(--transition) !important;
+    }
+    .nav-cta:hover { background: var(--gold-light) !important; color: var(--green) !important; }
+
+    /* ─── HERO ─────────────────────────────────── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--green);
+      overflow: hidden;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(10,92,66,0.6) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 20% 100%, rgba(200,164,90,0.08) 0%, transparent 60%);
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 860px; }
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(200,164,90,0.4);
+      padding: 0.4rem 1.2rem;
+      border-radius: 2px;
+    }
+    .hero-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3.5rem, 9vw, 7rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--white);
+      margin-bottom: 1.6rem;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 300;
+      color: rgba(255,255,255,0.7);
+      max-width: 560px;
+      margin: 0 auto 3rem;
+      line-height: 1.65;
+    }
+    .hero-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+      flex-wrap: wrap;
+    }
+    .flow-pill {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 0.6rem 1.6rem;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.06);
+      text-decoration: none;
+      transition: border-color var(--transition), background var(--transition);
+    }
+    .flow-pill:hover { border-color: var(--gold); background: rgba(200,164,90,0.12); }
+    .flow-arrow { color: rgba(255,255,255,0.35); font-size: 1.2rem; }
+    .flow-seal {
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      border: 2px solid rgba(200,164,90,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.9rem 2.4rem;
+      background: var(--gold);
+      color: var(--green);
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .btn-outline {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.9rem 2.4rem;
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 2px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color var(--transition), background var(--transition);
+    }
+    .btn-outline:hover { border-color: var(--gold); background: rgba(200,164,90,0.1); }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.35);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      animation: bob 2.2s ease-in-out infinite;
+    }
+    @keyframes bob { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+    .scroll-line {
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+    }
+
+    /* ─── SECTIONS ─────────────────────────────── */
+    section { padding: 7rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .container-narrow { max-width: 720px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+    .section-title.light { color: var(--white); }
+    .section-intro {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 640px;
+    }
+    .section-intro.light { color: rgba(255,255,255,0.65); }
+    .divider {
+      width: 40px; height: 2px;
+      background: var(--gold);
+      margin-bottom: 1.8rem;
+    }
+
+    /* ─── MISSION ─────────────────────────────── */
+    #mission { background: var(--cream-light); }
+    .mission-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      margin-top: 5rem;
+    }
+    .mission-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .dual-circle {
+      position: relative;
+      width: 340px;
+      height: 340px;
+    }
+    .circle-analytical, .circle-analogical {
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1.5rem;
+    }
+    .circle-analytical {
+      top: 0; left: 0;
+      background: var(--green);
+      color: var(--white);
+    }
+    .circle-analogical {
+      bottom: 0; right: 0;
+      background: var(--cream);
+      color: var(--green);
+      border: 2px solid var(--green);
+    }
+    .circle-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+      opacity: 0.7;
+    }
+    .circle-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      line-height: 1.2;
+      margin-bottom: 0.6rem;
+    }
+    .circle-desc {
+      font-size: 0.72rem;
+      font-weight: 300;
+      line-height: 1.5;
+      opacity: 0.8;
+    }
+    .circle-overlap {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 76px; height: 76px;
+      background: var(--cream-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      padding: 8px;
+    }
+    .mission-text h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.7rem;
+      margin-bottom: 1.2rem;
+      line-height: 1.2;
+    }
+    .mission-text p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+    .mission-text strong { color: var(--text); }
+    .mission-ref {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 1.5rem;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      padding-top: 1.2rem;
+    }
+    .ref-dot {
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ─── METHOD ────────────────────────────────── */
+    #method { background: var(--green); }
+    .method-header { margin-bottom: 5rem; }
+    .method-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 4rem;
+    }
+    .method-step {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 3rem 2.5rem;
+      transition: background var(--transition);
+    }
+    .method-step:hover { background: rgba(255,255,255,0.07); }
+    .step-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3.5rem;
+      color: rgba(200,164,90,0.3);
+      line-height: 1;
+      margin-bottom: 1.2rem;
+    }
+    .step-title {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--white);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+    .step-body {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.75;
+    }
+    .step-tag {
+      display: inline-block;
+      margin-top: 1.5rem;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(200,164,90,0.35);
+      padding: 0.3rem 0.8rem;
+      border-radius: 2px;
+    }
+    .dga-diagram {
+      margin-top: 5rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 3rem;
+      border-radius: var(--radius);
+    }
+    .dga-diagram-title {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2.5rem;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+    }
+    .dga-logo {
+      width: 48px; height: 48px;
+      object-fit: contain;
+      filter: brightness(0) invert(1) sepia(1) saturate(2) hue-rotate(5deg);
+      opacity: 0.85;
+    }
+    .dga-table {
+      display: grid;
+      grid-template-columns: 1fr 80px 1fr;
+      gap: 0;
+      align-items: stretch;
+    }
+    .dga-col {
+      padding: 2rem;
+    }
+    .dga-col-left { background: rgba(255,255,255,0.06); border-radius: var(--radius) 0 0 var(--radius); }
+    .dga-col-right { background: rgba(200,164,90,0.08); border-radius: 0 var(--radius) var(--radius) 0; }
+    .dga-col-center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      color: var(--gold);
+    }
+    .dga-col-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .dga-col-heading {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+    }
+    .dga-col-question {
+      font-style: italic;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 1.2rem;
+    }
+    .dga-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .dga-list li {
+      font-size: 0.83rem;
+      color: rgba(255,255,255,0.6);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .dga-list li::before {
+      content: '';
+      width: 4px; height: 4px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ─── CERTIFICATION ─────────────────────────── */
+    #certification { background: var(--cream); }
+    .cert-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 6rem;
+      align-items: start;
+      margin-top: 4rem;
+    }
+    .cert-seal-wrap {
+      position: sticky;
+      top: 8rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+    .cert-seal {
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      border: 3px solid var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .cert-seal-ring {
+      position: absolute;
+      inset: 8px;
+      border-radius: 50%;
+      border: 1px solid rgba(1,57,39,0.25);
+    }
+    .cert-seal-text-path {
+      position: absolute;
+      inset: 0;
+    }
+    .cert-seal-lion {
+      font-size: 4.5rem;
+      line-height: 1;
+    }
+    .cert-badge {
+      text-align: center;
+      border: 2px solid var(--green);
+      padding: 1rem 1.8rem;
+    }
+    .cert-badge-line {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--green);
+      line-height: 1.8;
+    }
+    .cert-steps { display: flex; flex-direction: column; gap: 0; }
+    .cert-step {
+      display: flex;
+      gap: 2rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid rgba(1,57,39,0.1);
+    }
+    .cert-step:last-child { border-bottom: none; }
+    .cert-step-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.8rem;
+      color: rgba(1,57,39,0.15);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 48px;
+      text-align: right;
+    }
+    .cert-step-content { flex: 1; }
+    .cert-step-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--green);
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.04em;
+    }
+    .cert-step-body {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+    .cert-step-icon {
+      width: 40px; height: 40px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ─── BENEFITS ──────────────────────────────── */
+    #benefits { background: var(--green); }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-top: 4rem;
+    }
+    .benefits-col-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(200,164,90,0.3);
+    }
+    .benefit-item {
+      margin-bottom: 2.2rem;
+    }
+    .benefit-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .benefit-body {
+      font-size: 0.83rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.7;
+    }
+
+    /* ─── SERVICES ──────────────────────────────── */
+    #services { background: var(--cream-light); }
+    .services-flow {
+      display: flex;
+      align-items: stretch;
+      margin-top: 4rem;
+      gap: 0;
+    }
+    .service-card {
+      flex: 1;
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.08);
+      padding: 2.5rem 2rem;
+      position: relative;
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+    .service-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      transform: translateY(-3px);
+    }
+    .service-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 0.5rem;
+      color: var(--gold);
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .service-num {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .service-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      color: var(--green);
+      margin-bottom: 0.8rem;
+    }
+    .service-body {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .service-tag {
+      display: block;
+      margin-top: 1.5rem;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+
+    /* ─── SCIENCE ───────────────────────────────── */
+    #science { background: var(--cream); }
+    .science-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-top: 4rem;
+    }
+    .pub-card {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.07);
+      padding: 2.2rem;
+      border-radius: var(--radius);
+    }
+    .pub-journal {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+    .pub-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      color: var(--green);
+      margin-bottom: 0.8rem;
+      line-height: 1.35;
+    }
+    .pub-authors {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .pub-year {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .science-note {
+      margin-top: 3rem;
+      padding: 2rem 2.5rem;
+      background: var(--green);
+      color: var(--white);
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      border-radius: var(--radius);
+    }
+    .science-note-body {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+    }
+    .science-note strong { color: var(--white); }
+
+    /* ─── CLIENTS ───────────────────────────────── */
+    #clients { background: var(--cream-light); }
+    .clients-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      margin-top: 3.5rem;
+      background: rgba(0,0,0,0.06);
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .client-cell {
+      background: var(--white);
+      padding: 2.5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 0.8rem;
+    }
+    .client-name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+    }
+    .client-type {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+    }
+    .client-icon {
+      width: 48px; height: 48px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 0.3rem;
+    }
+    .client-icon img {
+      width: 32px; height: 32px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+    .client-icon.logo-wide img {
+      width: 38px; height: 26px;
+    }
+    .clients-cta {
+      margin-top: 3rem;
+      text-align: center;
+    }
+    .clients-cta p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+    }
+    .clients-email {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--green);
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── CTA ───────────────────────────────────── */
+    #cta {
+      background: var(--green);
+      padding: 7rem 2rem;
+      text-align: center;
+    }
+    .cta-inner { max-width: 680px; margin: 0 auto; }
+    .cta-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      color: var(--white);
+      margin-bottom: 1.2rem;
+      line-height: 1.1;
+    }
+    .cta-subtitle {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+    .cta-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────── */
+    footer {
+      background: #010e0a;
+      padding: 3rem 2rem;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.78rem;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .footer-logo {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy { font-size: 0.7rem; }
+
+    /* ─── NATURE VS MACHINE ─────────────────────── */
+    .nvm-panel {
+      margin-top: 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .nvm-col {
+      padding: 3rem 2.5rem;
+    }
+    .nvm-col-machine {
+      background: rgba(255,255,255,0.04);
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .nvm-col-human {
+      background: rgba(200,164,90,0.07);
+    }
+    .nvm-col-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .nvm-col-label.machine { color: rgba(255,255,255,0.35); }
+    .nvm-col-label.human { color: var(--gold); }
+    .nvm-col-heading {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .nvm-col-heading.machine { color: rgba(255,255,255,0.5); }
+    .nvm-col-heading.human { color: var(--white); }
+    .nvm-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      margin-bottom: 1.5rem;
+    }
+    .nvm-list li {
+      font-size: 0.83rem;
+      line-height: 1.6;
+      display: flex;
+      gap: 0.7rem;
+      align-items: flex-start;
+    }
+    .nvm-list.machine li { color: rgba(255,255,255,0.4); }
+    .nvm-list.human li { color: rgba(255,255,255,0.7); }
+    .nvm-icon { flex-shrink: 0; margin-top: 0.15rem; }
+    .nvm-ref {
+      font-size: 0.68rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.3);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 1rem;
+      margin-top: 1rem;
+    }
+    @media(max-width:900px){ .nvm-panel { grid-template-columns: 1fr; } .nvm-col-machine { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); } }
+
+    /* ─── TIMELINE ───────────────────────────────── */
+    #timeline { background: var(--green); }
+    .timeline-track {
+      margin-top: 4.5rem;
+      position: relative;
+      padding-left: 2rem;
+    }
+    .timeline-track::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--gold), rgba(200,164,90,0.1));
+    }
+    .timeline-group {
+      margin-bottom: 3.5rem;
+    }
+    .timeline-era {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .timeline-era::before {
+      content: '';
+      width: 10px; height: 10px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-left: -2.55rem;
+    }
+    .timeline-items {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 1.5rem;
+      align-items: start;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .timeline-item:last-child { border-bottom: none; }
+    .timeline-year {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem;
+      color: var(--gold);
+      padding-top: 0.1rem;
+      line-height: 1;
+    }
+    .timeline-content {}
+    .timeline-venue {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 0.35rem;
+    }
+    .timeline-title {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--white);
+      line-height: 1.45;
+      margin-bottom: 0.3rem;
+    }
+    .timeline-authors {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+    }
+    .timeline-tag {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 2px;
+    }
+    .tag-core { background: rgba(200,164,90,0.2); color: var(--gold); }
+    .tag-applied { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.5); }
+    .tag-expand { background: rgba(10,92,66,0.6); color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.1); }
+    .timeline-stat {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      margin-top: 4rem;
+      background: rgba(255,255,255,0.06);
+    }
+    .stat-cell {
+      background: var(--green);
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.5rem;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .stat-label {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.4;
+    }
+    @media(max-width:900px){ .timeline-stat { grid-template-columns: repeat(2,1fr); } .timeline-item { grid-template-columns: 44px 1fr; } }
+
+    /* ─── SCIENCE UPDATED ───────────────────────── */
+    .science-cats {
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+      margin-top: 4rem;
+    }
+    .science-cat-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(1,57,39,0.15);
+    }
+    .pub-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .pub-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    @media(max-width:900px){ .pub-grid-3, .pub-grid-2 { grid-template-columns: 1fr; } }
+
+    /* ─── RESEARCH GROUP ────────────────────────── */
+    #researchgroup { background: var(--cream); }
+    .rg-intro {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      margin-top: 4rem;
+      margin-bottom: 5rem;
+    }
+    .rg-text p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+    .rg-text strong { color: var(--text); }
+    .rg-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .rg-meta-item {
+      border-left: 2px solid var(--gold);
+      padding-left: 1.2rem;
+    }
+    .rg-meta-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+    .rg-meta-value {
+      font-size: 0.85rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .rg-board-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+    .board-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(0,0,0,0.07);
+      border: 1px solid rgba(0,0,0,0.07);
+    }
+    .board-card {
+      background: var(--white);
+      padding: 2rem 1.6rem;
+      transition: background var(--transition);
+    }
+    .board-card:hover { background: var(--cream-light); }
+    .board-card.chairman {
+      background: var(--green);
+      grid-column: span 2;
+    }
+    .board-role {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .board-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.05rem;
+      line-height: 1.25;
+      margin-bottom: 0.4rem;
+      color: var(--green);
+    }
+    .board-card.chairman .board-name { color: var(--white); }
+    .board-institution {
+      font-size: 0.73rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 0.7rem;
+    }
+    .board-card.chairman .board-institution { color: rgba(255,255,255,0.6); }
+    .board-bio {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+    .board-card.chairman .board-bio { color: rgba(255,255,255,0.55); }
+    @media(max-width:900px){
+      .board-grid { grid-template-columns: 1fr 1fr; }
+      .board-card.chairman { grid-column: span 2; }
+      .rg-intro { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+    @media(max-width:600px){
+      .board-grid { grid-template-columns: 1fr; }
+      .board-card.chairman { grid-column: span 1; }
+    }
+
+    /* ─── ANIMATIONS ─────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── RESPONSIVE ─────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .mission-grid, .cert-layout, .benefits-grid, .science-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .method-steps { grid-template-columns: 1fr; }
+      .clients-grid { grid-template-columns: repeat(2, 1fr); }
+      .services-flow { flex-direction: column; }
+      .service-arrow { transform: rotate(90deg); padding: 0.3rem 0; }
+      .dga-table { grid-template-columns: 1fr; }
+      .dga-col-center { padding: 0.5rem; font-size: 1.5rem; }
+      .cert-seal-wrap { position: static; }
+      .dual-circle { width: 280px; height: 280px; }
+      .circle-analytical, .circle-analogical { width: 180px; height: 180px; }
+    }
+
+    /* ════ SCIENCE DEEP ════════════════════════════ */
+    #science-deep { background: var(--cream-light); }
+
+    .sd-intro-box {
+      background: var(--green);
+      padding: 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-bottom: 4rem;
+    }
+    .sd-intro-box h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .sd-intro-box h3 em { color: var(--gold-light); font-style: italic; }
+    .sd-intro-box p { font-size: 0.9rem; color: rgba(255,255,255,0.65); line-height: 1.8; }
+    .sd-stats {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.1);
+    }
+    .sd-stat {
+      background: rgba(255,255,255,0.06);
+      padding: 1.4rem;
+      text-align: center;
+    }
+    .sd-stat-n {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.2rem;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    .sd-stat-l { font-size: 0.7rem; color: rgba(255,255,255,0.45); }
+    @media(max-width:700px){ .sd-intro-box{ grid-template-columns:1fr; padding:2rem; } }
+
+    /* Model levels */
+    .ml {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 0 2rem;
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.07);
+      padding: 2.5rem 2.5rem 2.5rem 0;
+      margin-bottom: 2px;
+    }
+    .ml-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.6rem;
+      color: rgba(200,164,90,0.22);
+      line-height: 1;
+      text-align: right;
+      padding-top: 0.15rem;
+    }
+    .ml-tag {
+      display: inline-block;
+      font-size: 0.59rem; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(200,164,90,0.35);
+      padding: 0.18rem 0.75rem;
+      border-radius: 2px;
+      margin-bottom: 0.65rem;
+    }
+    .ml-h {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      color: var(--green);
+      margin-bottom: 0.65rem;
+      line-height: 1.2;
+    }
+    .ml-p {
+      font-size: 0.87rem;
+      color: var(--text-muted);
+      line-height: 1.78;
+      max-width: 680px;
+      margin-bottom: 1.2rem;
+    }
+    .ml-cards { display: flex; gap: 10px; flex-wrap: wrap; }
+    .ml-card {
+      flex: 1; min-width: 140px; max-width: 215px;
+      background: var(--cream-light);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 2px;
+      padding: 11px 13px;
+    }
+    .ml-card-n {
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .ml-card-d { font-size: 0.74rem; color: var(--text-muted); line-height: 1.5; }
+    .ml-chain { display: flex; flex-wrap: wrap; border: 1px solid rgba(0,0,0,0.07); overflow: hidden; }
+    .ml-step {
+      flex: 1; min-width: 148px;
+      background: var(--cream-light);
+      padding: 13px;
+      border-right: 1px solid rgba(0,0,0,0.06);
+    }
+    .ml-step:last-child { border-right: none; }
+    .ml-step-n {
+      font-size: 0.59rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 5px;
+    }
+    .ml-step-t { font-size: 0.74rem; color: var(--text-muted); line-height: 1.55; }
+    @media(max-width:700px){
+      .ml{ grid-template-columns:36px 1fr; padding:1.5rem 1rem 1.5rem 0; }
+      .ml-chain{ flex-direction:column; }
+      .ml-step{ border-right:none; border-bottom:1px solid rgba(0,0,0,0.06); }
+    }
+
+    /* References */
+    #ref-section { background: var(--cream); }
+    .ref-table { width: 100%; border-collapse: collapse; }
+    .ref-table tr { border-bottom: 1px solid rgba(1,57,39,0.08); }
+    .ref-table tr:last-child { border-bottom: none; }
+    .ref-yr-cell {
+      font-family: 'DM Serif Display', serif;
+      font-size: 0.85rem; color: var(--gold);
+      padding: 0.95rem 1.2rem 0.95rem 0;
+      vertical-align: top; white-space: nowrap; width: 50px;
+    }
+    .ref-body-cell { padding: 0.95rem 0; vertical-align: top; }
+    .ref-auth { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 2px; }
+    .ref-title { font-size: 0.83rem; font-weight: 600; color: var(--text); line-height: 1.4; margin-bottom: 2px; }
+    .ref-src { font-size: 0.72rem; color: var(--text-muted); font-style: italic; margin-bottom: 5px; }
+    .rp {
+      display: inline-block;
+      font-size: 0.57rem; font-weight: 700;
+      letter-spacing: 0.07em; text-transform: uppercase;
+      padding: 1px 7px; border-radius: 2px; margin-right: 3px;
+    }
+    .rp-own  { background: rgba(200,164,90,0.14); color: #c8a45a; }
+    .rp-dga  { background: rgba(1,57,39,0.12);    color: #024d36; }
+    .rp-cross{ background: rgba(2,77,54,0.1);      color: #2a7a58; }
+    .rp-dial { background: rgba(110,70,170,0.1);   color: #7848b8; }
+    .rp-sens { background: rgba(170,120,0,0.1);    color: #a87800; }
+    .rp-food { background: rgba(0,120,50,0.1);     color: #007832; }
+    .rp-lang { background: rgba(170,50,50,0.1);    color: #aa3232; }
+    .rp-robot{ background: rgba(30,70,190,0.1);    color: #1e46be; }
+
+    /* Certifier wall */
+    #cert-wall { background: var(--green); }
+    .cwall-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(195px,1fr));
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      margin-top: 2.5rem;
+    }
+    .cwall-card {
+      background: var(--green);
+      padding: 2rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: background var(--transition);
+    }
+    .cwall-card:hover { background: var(--green-light); }
+    .cwall-seal {
+      width: 115px; height: 115px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto 1.1rem;
+      filter: brightness(0) invert(1); opacity: 0.75;
+    }
+    .cwall-name {
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.17em; text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 0.28rem;
+    }
+    .cwall-role {
+      font-size: 0.6rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.72);
+      margin-bottom: 0.65rem;
+    }
+    .cwall-desc {
+      font-size: 0.77rem;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.62;
+    }
+    .cwall-apply-btn {
+      display: inline-block; margin-top: 0.9rem;
+      font-size: 0.61rem; font-weight: 700;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(200,164,90,0.45);
+      padding: 0.35rem 1.1rem; border-radius: 2px;
+      text-decoration: none;
+      transition: all var(--transition);
+    }
+    .cwall-apply-btn:hover { background: rgba(200,164,90,0.12); }
+
+
+    /* ════ 4-TIER PRODUCT MODEL ════════════════════ */
+    #four-tier { background: var(--green); }
+
+    .tier-intro {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: start; margin-bottom: 4.5rem;
+    }
+    .tier-intro p {
+      font-size: 0.9rem; color: rgba(255,255,255,0.65);
+      line-height: 1.82; margin-bottom: 0.9rem;
+    }
+    .tier-intro strong { color: var(--white); }
+    @media(max-width:800px){ .tier-intro{grid-template-columns:1fr;gap:2rem;} }
+
+    .tier-flow {
+      display: grid; grid-template-columns: 1fr 26px 1fr 26px 1fr;
+    }
+    .tier-flow-arrow {
+      display:flex; align-items:center; justify-content:center;
+      color:var(--gold); font-size:1rem; opacity:0.4; padding-top:2.2rem;
+    }
+    .tier-flow-label {
+      font-size:0.6rem; font-weight:700; letter-spacing:0.24em;
+      text-transform:uppercase; color:var(--gold);
+      padding-bottom:0.5rem; margin-bottom:0.7rem;
+      border-bottom:1px solid rgba(200,164,90,0.2);
+    }
+    .tfi {
+      padding:8px 10px; margin-bottom:3px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      font-size:0.75rem; color:rgba(255,255,255,0.65);
+    }
+    @media(max-width:800px){
+      .tier-flow{grid-template-columns:1fr;gap:0.75rem;}
+      .tier-flow-arrow{display:none;}
+    }
+
+    .tier-matrix { display:flex; flex-direction:column; gap:2px; margin-top:0; }
+    .tier-row {
+      display:grid; grid-template-columns:52px 1fr 1fr 1fr;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.08);
+      overflow:hidden; transition:background var(--transition);
+    }
+    .tier-row:hover { background:rgba(255,255,255,0.07); }
+    .tier-num {
+      display:flex; align-items:center; justify-content:center;
+      font-family:'DM Serif Display',serif;
+      font-size:2rem; line-height:1; padding:2rem 0;
+    }
+    .t1 .tier-num { color:#e8845a; background:rgba(232,132,90,0.1); }
+    .t2 .tier-num { color:#e8b45a; background:rgba(232,180,90,0.1); }
+    .t3 .tier-num { color:#5ab8a8; background:rgba(90,184,168,0.1); }
+    .t4 .tier-num { color:#7ab4e8; background:rgba(58,122,184,0.1); }
+    .tier-cell {
+      padding:1.5rem 1.3rem;
+      border-left:1px solid rgba(255,255,255,0.07);
+    }
+    .tier-cell-label {
+      font-size:0.58rem; font-weight:700; letter-spacing:0.2em;
+      text-transform:uppercase; color:rgba(255,255,255,0.28); margin-bottom:0.4rem;
+    }
+    .tier-cell-title {
+      font-family:'DM Serif Display',serif; font-size:0.95rem;
+      color:var(--white); margin-bottom:0.4rem; line-height:1.2;
+    }
+    .tier-cell-body {
+      font-size:0.77rem; color:rgba(255,255,255,0.55); line-height:1.62;
+    }
+    .tier-cell-body strong { color:rgba(255,255,255,0.88); }
+    .tier-tags { display:flex; flex-wrap:wrap; gap:4px; margin-top:0.6rem; }
+    .ttag {
+      font-size:0.57rem; font-weight:700; letter-spacing:0.08em;
+      text-transform:uppercase; padding:2px 7px; border-radius:2px;
+    }
+    .ttag-dga  { background:rgba(10,92,66,0.5);  color:rgba(255,255,255,0.72); }
+    .ttag-pkg  { background:rgba(200,164,90,0.15); color:var(--gold); }
+    @media(max-width:900px){
+      .tier-row{grid-template-columns:44px 1fr;}
+      .tier-cell:nth-child(n+3){border-left:none;border-top:1px solid rgba(255,255,255,0.07);}
+    }
+
+    .pkg-rules {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:1.2rem; margin:2.5rem 0 1.5rem;
+    }
+    .pkg-rule {
+      padding:1.1rem 1.3rem;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.1);
+    }
+    .pkg-rule-lbl {
+      font-size:0.6rem; font-weight:700; letter-spacing:0.2em;
+      text-transform:uppercase; margin-bottom:0.4rem;
+    }
+    .pkg-rule-sub {
+      font-size:0.78rem; color:rgba(255,255,255,0.65); margin-bottom:0.6rem;
+    }
+    .pkg-badges { display:flex; gap:4px; flex-wrap:wrap; }
+    .pb {
+      font-size:0.67rem; font-weight:700; padding:3px 10px;
+      border-radius:2px; border:1px solid;
+    }
+    .pb1 { background:rgba(232,132,90,0.1); color:#e8845a; border-color:rgba(232,132,90,0.3); }
+    .pb3 { background:rgba(90,184,168,0.1); color:#5ab8a8; border-color:rgba(90,184,168,0.3); }
+    @media(max-width:700px){ .pkg-rules{grid-template-columns:1fr;} }
+
+    .pkg-strip {
+      display:grid; grid-template-columns:repeat(5,1fr);
+      gap:1px; background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.08);
+    }
+    .pkg-card {
+      background:rgba(255,255,255,0.03); padding:1.2rem 0.9rem;
+      text-align:center; transition:background var(--transition);
+    }
+    .pkg-card:hover { background:rgba(255,255,255,0.07); }
+    .pkg-letter {
+      font-family:'DM Serif Display',serif; font-size:1.7rem;
+      color:var(--gold); line-height:1; margin-bottom:0.3rem;
+    }
+    .pkg-name {
+      font-size:0.68rem; font-weight:700; letter-spacing:0.1em;
+      text-transform:uppercase; color:var(--white); margin-bottom:0.2rem;
+    }
+    .pkg-vol { font-size:0.63rem; color:rgba(255,255,255,0.35); margin-bottom:0.45rem; }
+    .pkg-note { font-size:0.67rem; color:rgba(255,255,255,0.42); line-height:1.5; }
+    .pkg-dots { display:flex; gap:3px; justify-content:center; margin-top:0.45rem; }
+    .pd {
+      width:16px; height:16px; border-radius:50%;
+      font-size:0.57rem; font-weight:700;
+      display:flex; align-items:center; justify-content:center; color:#fff;
+    }
+    .pd1{background:rgba(232,132,90,0.75);}
+    .pd2{background:rgba(232,180,90,0.75);}
+    .pd3{background:rgba(90,184,168,0.75);}
+    .pd4{background:rgba(58,122,184,0.75);}
+    @media(max-width:600px){ .pkg-strip{grid-template-columns:repeat(3,1fr);} }
+
+    .tier-refs {
+      display:grid; grid-template-columns:repeat(3,1fr);
+      gap:1.8rem; margin-top:2.8rem;
+      border-top:1px solid rgba(255,255,255,0.08); padding-top:1.8rem;
+    }
+    .tier-ref-lbl {
+      font-size:0.59rem; font-weight:700; letter-spacing:0.2em;
+      text-transform:uppercase; color:var(--gold); margin-bottom:0.4rem;
+    }
+    .tier-ref-txt { font-size:0.74rem; color:rgba(255,255,255,0.42); line-height:1.65; }
+    @media(max-width:700px){ .tier-refs{grid-template-columns:1fr;} }
+
+
+    /* ── Research evidence callouts ─────────────────── */
+    .ev-strip {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-top: 1.2rem;
+    }
+    .ev-chip {
+      display: inline-flex; flex-direction: column;
+      background: rgba(200,164,90,0.1);
+      border: 1px solid rgba(200,164,90,0.25);
+      border-radius: 2px; padding: 8px 12px;
+    }
+    .ev-chip-n {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem; color: var(--gold); line-height: 1;
+      margin-bottom: 2px;
+    }
+    .ev-chip-l {
+      font-size: 0.65rem; color: rgba(255,255,255,0.5);
+      line-height: 1.3;
+    }
+    /* On cream/white backgrounds */
+    .ev-chip.light {
+      background: rgba(200,164,90,0.08);
+      border-color: rgba(200,164,90,0.3);
+    }
+    .ev-chip.light .ev-chip-n { color: var(--green); }
+    .ev-chip.light .ev-chip-l { color: var(--text-muted); }
+
+    .ev-quote {
+      border-left: 2px solid rgba(200,164,90,0.4);
+      padding: 0.75rem 1rem;
+      margin-top: 1.2rem;
+      background: rgba(255,255,255,0.04);
+    }
+    .ev-quote.light { background: rgba(1,57,39,0.05); }
+    .ev-quote-text {
+      font-size: 0.82rem; font-style: italic;
+      color: rgba(255,255,255,0.62); line-height: 1.65;
+    }
+    .ev-quote.light .ev-quote-text { color: var(--text-muted); }
+    .ev-quote-src {
+      font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold); margin-top: 0.4rem;
+    }
+    .ev-quote.light .ev-quote-src { color: var(--green); }
+
+    .ev-finding {
+      margin-top: 1rem;
+      padding: 0.8rem 1rem;
+      background: rgba(200,164,90,0.07);
+      border-radius: 2px;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.6;
+    }
+    .ev-finding.light {
+      background: rgba(1,57,39,0.06);
+      color: var(--text-muted);
+    }
+    .ev-finding strong { color: var(--white); }
+    .ev-finding.light strong { color: var(--text); }
+    .ev-finding em { color: var(--gold); font-style: normal; font-weight: 600; }
+    .ev-finding.light em { color: var(--green); }
+
+
+    /* ════ CURATION EXAMPLES ════════════════════════════ */
+    #curation { background: var(--cream-light); }
+
+    .cur-tier-header {
+      display: flex; align-items: center; gap: 12px;
+      margin: 3.5rem 0 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(1,57,39,0.1);
+    }
+    .cur-tier-header:first-of-type { margin-top: 0; }
+    .cur-dot {
+      width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+    }
+    .cur-tier-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem; color: var(--green);
+    }
+    .cur-tier-sub {
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--text-muted); margin-left: auto;
+    }
+
+    .cur-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+    .cur-card {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 2px;
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: box-shadow var(--transition);
+    }
+    .cur-card:hover { box-shadow: 0 4px 20px rgba(1,57,39,0.08); }
+    .cur-accent { height: 3px; }
+    .cur-body { padding: 1.1rem 1.1rem 0.8rem; flex: 1; }
+
+    .cur-badge {
+      display: inline-block;
+      font-size: 0.58rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 2px 9px; border-radius: 20px;
+      margin-bottom: 0.6rem;
+    }
+    .cur-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.05rem; color: var(--text);
+      margin-bottom: 2px; line-height: 1.2;
+    }
+    .cur-sub {
+      font-size: 0.72rem; color: var(--text-muted);
+      margin-bottom: 0.8rem; line-height: 1.5;
+    }
+
+    .cur-rl {
+      font-size: 0.58rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(1,57,39,0.45);
+      margin: 0.5rem 0 0.3rem;
+    }
+    .cur-pills { display: flex; flex-wrap: wrap; gap: 4px; }
+    .cur-pill {
+      font-size: 0.68rem; color: var(--text-muted);
+      background: var(--cream-light);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 20px; padding: 2px 8px;
+    }
+    .cur-pill.strong {
+      color: var(--green);
+      background: rgba(1,57,39,0.06);
+      border-color: rgba(1,57,39,0.15);
+      font-weight: 600;
+    }
+
+    .cur-analogy {
+      font-size: 0.75rem; color: var(--text-muted);
+      font-style: italic; line-height: 1.6;
+      margin-top: 0.7rem; padding-top: 0.7rem;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .cur-sci {
+      padding: 0.75rem 1.1rem;
+      border-top: 1px solid rgba(0,0,0,0.06);
+      background: var(--cream-light);
+    }
+    .cur-sci-lbl {
+      font-size: 0.57rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 4px;
+    }
+    .cur-sci-txt {
+      font-size: 0.72rem; color: var(--text-muted); line-height: 1.6;
+    }
+    .cur-sci-txt strong { color: var(--text); }
+
+    @media(max-width:700px){
+      .cur-grid { grid-template-columns: 1fr; }
+      .cur-tier-sub { display: none; }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══════════════════════════════════════ -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <img class="nav-logo-icon" src="assets/logo-upcycledby.png" alt="Upcycled By seal" />
+    <span class="nav-logo-text">Upcycled By</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#method">The Method</a></li>
+    <li><a href="#certification">Certification</a></li>
+    <li><a href="#benefits">Benefits</a></li>
+    <li><a href="#researchgroup">Research Group</a></li>
+    <li><a href="#timeline">Publications</a></li>
+    <li><a href="#science-deep">The Science</a></li>
+    <li><a href="#four-tier">4-Tier Upcycling</a></li>
+    <li><a href="#curation">Curation</a></li>
+    <li><a href="#cta" class="nav-cta">Get Certified</a></li>
+  </ul>
+  <div class="lang-switcher" id="langSwitcher">
+    <button class="lang-btn active" onclick="setLang('en')" data-lang="en">EN</button>
+    <button class="lang-btn" onclick="setLang('sv')" data-lang="sv">SV</button>
+    <button class="lang-btn" onclick="setLang('fr')" data-lang="fr">FR</button>
+    <button class="lang-btn" onclick="setLang('es')" data-lang="es">ES</button>
+    <button class="lang-btn" onclick="setLang('zh-CN')" data-lang="zh-CN">中文</button>
+  </div>
+</nav>
+<div id="google_translate_element"></div>
+
+<!-- ═══ HERO ═══════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Scientific Certification · Upcycled Wine</div>
+    <h1 class="hero-title">Upcycled <em>By</em></h1>
+    <p class="hero-subtitle">Turn Waste into Value. A science-backed certification for wine producers, distributors and wholesalers who transform overlooked resources into exceptional, certified wine — through upcycling and sensory realignment.</p>
+    <div class="ev-strip" style="justify-content:center;margin-bottom:1.5rem;margin-top:-1rem;">
+      <div class="ev-chip"><span class="ev-chip-n">91%</span><span class="ev-chip-l">positive to sensory-based<br>purchase decisions</span></div>
+      <div class="ev-chip"><span class="ev-chip-n">95%</span><span class="ev-chip-l">open to purchasing<br>blended rescued wine</span></div>
+      <div class="ev-chip"><span class="ev-chip-n">54%</span><span class="ev-chip-l">prefer visual crossmodal<br>communication</span></div>
+      <div class="ev-chip"><span class="ev-chip-n">76%</span><span class="ev-chip-l">consider sustainability<br>in wine purchases</span></div>
+    </div>
+    <div class="hero-flow">
+      <a href="#services" class="flow-pill">Producers</a>
+      <span class="flow-arrow">→</span>
+      <div class="flow-seal">
+        <img src="assets/cert-official.png" alt="Upcycled By certified seal" style="width:130px;height:130px;object-fit:contain;filter:brightness(0) invert(1);" />
+      </div>
+      <span class="flow-arrow">→</span>
+      <a href="#benefits" class="flow-pill">Consumers</a>
+    </div>
+    <div class="hero-ctas">
+      <a href="#certification" class="btn-primary">Learn About Certification</a>
+      <a href="#method" class="btn-outline">The Science Behind It</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ═══ MISSION ════════════════════════════════════ -->
+<section id="mission">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Our Mission</div>
+      <div class="divider"></div>
+      <h2 class="section-title">The Alignment Gap:<br>Where Wine Waste Begins</h2>
+    </div>
+    <div class="mission-grid">
+      <div class="mission-visual reveal reveal-delay-1">
+        <div class="dual-circle">
+          <div class="circle-analytical">
+            <div class="circle-label">The Analytical Grip</div>
+            <div class="circle-title">Science</div>
+            <div class="circle-desc">Measurable attributes — vision, odour, taste, tactile. Deductive precision.</div>
+          </div>
+          <div class="circle-overlap">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDAgMTAwJz48Y2lyY2xlIGN4PSczNScgY3k9JzUwJyByPScyOCcgZmlsbD0nbm9uZScgc3Ryb2tlPSdyZ2JhKDIwMCwxNjQsOTAsMC43KScgc3Ryb2tlLXdpZHRoPScyLjUnLz48Y2lyY2xlIGN4PSc2NScgY3k9JzUwJyByPScyOCcgZmlsbD0nbm9uZScgc3Ryb2tlPSdyZ2JhKDIwMCwxNjQsOTAsMC43KScgc3Ryb2tlLXdpZHRoPScyLjUnLz48cGF0aCBkPSdNNTAgMjJRNDEgNTAgNTAgNzhRNTkgNTAgNTAgMjJaJyBmaWxsPSdyZ2JhKDIwMCwxNjQsOTAsMC4yKScvPjwvc3ZnPg==" alt="Double Grip" style="width:100%;height:100%;object-fit:contain;" />
+          </div>
+          <div class="circle-analogical">
+            <div class="circle-label">The Analogical Grip</div>
+            <div class="circle-title">Art</div>
+            <div class="circle-desc">Metaphors, analogies and holistic gestalt. Inductive richness.</div>
+          </div>
+        </div>
+      </div>
+      <div class="mission-text reveal reveal-delay-2">
+        <h3>The Double Grip Method identifies upcycling potential — and finds the right context for every wine.</h3>
+        <p>Across the entire wine supply chain, a significant and underestimated problem silently creates waste: the <strong>alignment gap</strong>. A wine's sensory character changes during storage, transport and maturation — but the brand promise on the label does not. Consumers expect Coca-Cola to taste exactly the same every time. When a wine deviates from that expectation, even when it has genuinely improved — developed more bouquet, gained complexity, acquired new aromatic dimensions — it risks being rejected, returned or left unsold.</p>
+        <p>The result is warehouses holding packaged wine that nobody analyses and few want to touch. Yet many of these lots have not deteriorated. They have <em>evolved</em>. With the right sensory analysis, adjustment and communication strategy, they can be repositioned, certified and returned to market as the products they have genuinely become.</p>
+        <p>Our core method — the <strong>Double Grip Analysis</strong> — was developed at Campus Grythyttan, Örebro University. It combines analytical precision (what can be measured) with analogical depth (what the wine communicates as a whole experience) to identify exactly what a wine is, what it can become, and how to close the gap between its sensory reality and its market potential.</p>
+        <div class="mission-ref">
+          <div class="ref-dot"></div>
+          <span>Methods developed by Ass. Prof. Anders Crichton-Fock (formerly Herdenstam), PhD · Campus Grythyttan, Örebro University &amp; Prof. Charles Spence, Oxford University</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ METHOD ═════════════════════════════════════ -->
+<section id="method">
+  <div class="container">
+    <div class="method-header reveal">
+      <div class="section-label" style="color:var(--gold)">Our Approach</div>
+      <div class="divider"></div>
+      <h2 class="section-title light">Three Methods.<br>One Certification.</h2>
+      <p class="section-intro light">The Upcycled By certification rests on a triad of scientific methods that together guarantee both the quality and the environmental integrity of every certified product.</p>
+    </div>
+
+    <div class="method-steps">
+      <div class="method-step reveal reveal-delay-1">
+        <div class="step-num">01</div>
+        <div class="step-title">Double Grip Analysis</div>
+        <div class="step-body">
+          The core methodology. Each product is evaluated along two parallel tracks simultaneously:
+          the <em>analytical</em> — isolating and measuring individual sensory attributes (vision, odour, taste, tactile sensations) — and
+          the <em>analogical</em> — capturing holistic impressions through metaphors, images and personal memory associations.
+          <br><br>
+          This dual approach ensures that nothing critical is missed: neither the measurable chemistry nor the lived, human experience of the product.
+          <div class="ev-finding">Analogical training increased common shared attributes from <strong>3 to 8 categories</strong> within a sommelier group — a 167% increase — compared to zero increase with analytical training alone. <em>Herdenstam et al., Int'l Journal of Gastronomy 2018</em></div>
+        </div>
+        <span class="step-tag">Science & Art</span>
+      </div>
+
+      <div class="method-step reveal reveal-delay-2">
+        <div class="step-num">02</div>
+        <div class="step-title">Dialogue Consensus Technique</div>
+        <div class="step-body">
+          Individual sensory assessments are brought into a structured group dialogue. Through iterative rounds of sharing and discussion, tasters build a shared vocabulary — moving from personal metaphors to a common understanding of the product's unique character.
+          <br><br>
+          This technique, rooted in the reflective seminar tradition, is particularly powerful for identifying the hidden strengths in products that might otherwise be discarded. It connects the product's story to its audience.
+          <div class="ev-finding">All four sommelier groups successfully reached the maximum of <strong>8 shared attributes</strong> — both analytical and analogical — despite starting from divergent individual vocabularies. <em>Crichton-Fock &amp; Spence, Journal of Wine Research 2024</em></div>
+        </div>
+        <span class="step-tag">Shared Understanding</span>
+      </div>
+
+      <div class="method-step reveal reveal-delay-3">
+        <div class="step-num">03</div>
+        <div class="step-title">Critical Attribute Technique (CAT)</div>
+        <div class="step-body">
+          The final step isolates the decisive sensory and environmental attributes that define the product's unique upcycling potential. CAT identifies which qualities — analytical or analogical — are critical for consumer acceptance and environmental value.
+          <br><br>
+          The result is a clear, documented profile of the product's upcycling level (0–4) and a roadmap for optimal use — whether blending, redistribution, repackaging or repurposing.
+          <div class="ev-finding"><strong>50% of sommelier groups</strong> produced upcycled wines that received <strong>higher consumer ratings</strong> than their commercial counterparts in blind tasting. <em>Crichton-Fock &amp; Spence, Journal of Wine Research 2024</em></div>
+        </div>
+        <span class="step-tag">Actionable Profile</span>
+      </div>
+    </div>
+
+    <!-- Nature vs Machine panel -->
+    <div class="nvm-panel reveal">
+      <div class="nvm-col nvm-col-machine">
+        <div class="nvm-col-label machine">Algorithmic Analysis</div>
+        <div class="nvm-col-heading machine">What a machine can do</div>
+        <ul class="nvm-list machine">
+          <li><span class="nvm-icon">—</span>Measure chemical compounds, pH, sugar, tannin levels</li>
+          <li><span class="nvm-icon">—</span>Classify colour spectrum and optical properties</li>
+          <li><span class="nvm-icon">—</span>Compare datasets against known profiles</li>
+          <li><span class="nvm-icon">—</span>Calculate consistency across large batches</li>
+          <li><span class="nvm-icon">—</span>Predict shelf-life from controlled variables</li>
+        </ul>
+        <div class="nvm-ref">Herdenstam et al., Int'l Journal of Gastronomy and Food Science, 2022 — Nature versus machine</div>
+      </div>
+      <div class="nvm-col nvm-col-human">
+        <div class="nvm-col-label human">Double Grip Analysis</div>
+        <div class="nvm-col-heading human">What only a trained human can do</div>
+        <ul class="nvm-list human">
+          <li><span class="nvm-icon" style="color:var(--gold)">+</span>Recognise complex odour memories and autobiographical associations</li>
+          <li><span class="nvm-icon" style="color:var(--gold)">+</span>Form holistic gestalt impressions of the whole experience</li>
+          <li><span class="nvm-icon" style="color:var(--gold)">+</span>Generate meaningful metaphors that connect product to consumer</li>
+          <li><span class="nvm-icon" style="color:var(--gold)">+</span>Apply practical wisdom (<em>phronesis</em>) — judgment in context</li>
+          <li><span class="nvm-icon" style="color:var(--gold)">+</span>Determine upcycling potential and optimal use through dialogue</li>
+        </ul>
+        <div class="nvm-ref">Crichton-Fock &amp; Spence, Journal of Wine Research, 2024 · Herdenstam et al., Int'l Journal of Gastronomy, 2018, 2020</div>
+      </div>
+    </div>
+
+    <div class="dga-diagram reveal">
+      <div class="dga-diagram-title">
+        <img class="dga-logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDAgMTAwJz48Y2lyY2xlIGN4PSczNScgY3k9JzUwJyByPScyOCcgZmlsbD0nbm9uZScgc3Ryb2tlPSdyZ2JhKDIwMCwxNjQsOTAsMC43KScgc3Ryb2tlLXdpZHRoPScyLjUnLz48Y2lyY2xlIGN4PSc2NScgY3k9JzUwJyByPScyOCcgZmlsbD0nbm9uZScgc3Ryb2tlPSdyZ2JhKDIwMCwxNjQsOTAsMC43KScgc3Ryb2tlLXdpZHRoPScyLjUnLz48cGF0aCBkPSdNNTAgMjJRNDEgNTAgNTAgNzhRNTkgNTAgNTAgMjJaJyBmaWxsPSdyZ2JhKDIwMCwxNjQsOTAsMC4yKScvPjwvc3ZnPg==" alt="Double Grip Analysis" />
+        Double Grip Analysis — The Two Registers
+        <img class="dga-logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDAgMTAwJz48Y2lyY2xlIGN4PSczNScgY3k9JzUwJyByPScyOCcgZmlsbD0nbm9uZScgc3Ryb2tlPSdyZ2JhKDIwMCwxNjQsOTAsMC43KScgc3Ryb2tlLXdpZHRoPScyLjUnLz48Y2lyY2xlIGN4PSc2NScgY3k9JzUwJyByPScyOCcgZmlsbD0nbm9uZScgc3Ryb2tlPSdyZ2JhKDIwMCwxNjQsOTAsMC43KScgc3Ryb2tlLXdpZHRoPScyLjUnLz48cGF0aCBkPSdNNTAgMjJRNDEgNTAgNTAgNzhRNTkgNTAgNTAgMjJaJyBmaWxsPSdyZ2JhKDIwMCwxNjQsOTAsMC4yKScvPjwvc3ZnPg==" alt="Double Grip Analysis" style="transform:scaleX(-1);" />
+      </div>
+      <div class="dga-table">
+        <div class="dga-col dga-col-left">
+          <div class="dga-col-label">Analytical Grip</div>
+          <div class="dga-col-heading">What can I find?</div>
+          <div class="dga-col-question">"What qualities can I discern in the wine?"</div>
+          <ul class="dga-list">
+            <li>Visual attributes: colour, clarity, viscosity</li>
+            <li>Olfactory: scent groups, intensity, development</li>
+            <li>Palate structure: acidity, tannin, alcohol, body</li>
+            <li>Flavour elements: fruit, earth, oak, mineral</li>
+            <li>Finish length and quality level</li>
+            <li>High measurability — deductive approach</li>
+          </ul>
+        </div>
+        <div class="dga-col dga-col-center">⟺</div>
+        <div class="dga-col dga-col-right">
+          <div class="dga-col-label">Analogical Grip</div>
+          <div class="dga-col-heading">What awakens in me?</div>
+          <div class="dga-col-question">"What does tasting this wine awaken within me?"</div>
+          <ul class="dga-list">
+            <li>Metaphors: images, parables, personal associations</li>
+            <li>Odour memories and autobiographic impressions</li>
+            <li>Holistic gestalt — the wine as a whole experience</li>
+            <li>Crossmodal correspondences (visual, auditory, tactile)</li>
+            <li>Cultural and emotional dimensions</li>
+            <li>Low measurability — inductive, humanistic approach</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CERTIFICATION ══════════════════════════════ -->
+<section id="certification">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">The Certification</div>
+      <div class="divider"></div>
+      <h2 class="section-title">What the Seal Means</h2>
+      <p class="section-intro">The Upcycled By seal is a guarantee of three verified commitments — origin, method and environmental impact. Backed by peer-reviewed research at Örebro University and Oxford.</p>
+    </div>
+
+    <div class="cert-layout">
+      <div class="cert-seal-wrap reveal reveal-delay-1">
+        <img src="assets/cert-official.png" alt="Upcycled By Crichton-Fock — Verified Upcycled Wine Blend"
+          style="width:220px; object-fit:contain; filter:brightness(0) invert(1) sepia(1) hue-rotate(95deg) saturate(12) brightness(0.28);" />
+        <div style="text-align:center; max-width:200px;">
+          <p style="font-size:0.75rem; color:var(--text-muted); line-height:1.6;">Each certified product carries a unique identifier traceable to its origin, analysis and certification date.</p>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:1rem;">
+          <div class="ev-chip light"><span class="ev-chip-n">50%</span><span class="ev-chip-l">of sommeliers produced wines<br>rated above commercial</span></div>
+          <div class="ev-chip light"><span class="ev-chip-n">JWR</span><span class="ev-chip-l">Journal of Wine Research<br>2024 · Peer reviewed</span></div>
+        </div>
+      </div>
+
+      <div class="cert-steps reveal reveal-delay-2">
+        <div class="cert-step">
+          <div class="cert-step-num">01</div>
+          <div class="cert-step-content">
+            <div class="cert-step-title">Origin &amp; Sustainability</div>
+            <div class="cert-step-body">
+              The final product is made from 100% "rescued" material — wine, food or other produce that would otherwise become waste. This can include overmatured wines, surplus harvests, by-products of production, or unsellable stock due to labelling or vintage issues.
+              <br><br>
+              The producer must document the origin, quantity and reason for risk of waste, along with a commitment to sustainable and traceable sourcing throughout the supply chain.
+            </div>
+          </div>
+        </div>
+
+        <div class="cert-step">
+          <div class="cert-step-num">02</div>
+          <div class="cert-step-content">
+            <div class="cert-step-title">Method &amp; Sensory Analysis</div>
+            <div class="cert-step-body">
+              The Double Grip Analysis is applied to the base material by trained assessors. This guarantees that both analytical attributes (measurable sensory qualities) and analogical attributes (holistic, metaphorical character) are documented.
+              <br><br>
+              The analysis identifies the product's upcycling level (0–4) and determines which use — blending, repackaging, redistribution or new product creation — maximises both quality and resource efficiency. Only products achieving level 2 or above qualify for certification.
+            </div>
+          </div>
+        </div>
+
+        <div class="cert-step">
+          <div class="cert-step-num">03</div>
+          <div class="cert-step-content">
+            <div class="cert-step-title">Final Product &amp; Environmental Impact</div>
+            <div class="cert-step-body">
+              The upcycling process itself is evaluated to confirm that it has genuinely minimised waste and maximised resource use. The final product's carbon footprint is calculated relative to the conventional alternative.
+              <br><br>
+              The certification seal is issued when all three criteria are met. It is renewed annually and subject to re-assessment if production methods or sourcing change significantly.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BENEFITS ═══════════════════════════════════ -->
+<section id="benefits">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label" style="color:var(--gold)">The Benefits</div>
+      <div class="divider"></div>
+      <h2 class="section-title light">For Everyone<br>in the Chain</h2>
+    </div>
+
+    <div class="benefits-grid">
+      <div class="reveal reveal-delay-1">
+        <div class="benefits-col-title">Wine Producers &amp; Importers</div>
+
+        <div class="benefit-item">
+          <div class="benefit-title">Environmental Responsibility</div>
+          <div class="benefit-body">The certification verifies that 100% of the wine or food product used is upcycled, highlighting the producer's commitment to reducing waste and promoting resource reuse.</div>
+        </div>
+
+        <div class="benefit-item">
+          <div class="benefit-title">Reduced Carbon Footprint</div>
+          <div class="benefit-body">By maximising the base material's qualities without new resource extraction, producers demonstrably lower their carbon footprint — a clear, quantifiable benefit for environmentally conscious markets.</div>
+        </div>
+
+        <div class="benefit-item">
+          <div class="benefit-title">Access to Sustainable Markets</div>
+          <div class="benefit-body">Certified products meet the standards of eco-focused retailers and importers, allowing producers to reach more environmentally aware consumers and premium sustainability-positioned market segments.</div>
+        </div>
+
+        <div class="benefit-item">
+          <div class="benefit-title">Resource Efficiency</div>
+          <div class="benefit-body">Through upcycling, producers minimise environmental waste and align with circular economy principles, showcasing efficient use of resources and reducing the environmental impact of production.</div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-2">
+        <div class="benefits-col-title">Retail &amp; Consumers</div>
+
+        <div class="benefit-item">
+          <div class="benefit-title">Supporting Waste Reduction</div>
+          <div class="benefit-body">Choosing certified products allows consumers to actively back initiatives that reduce waste and promote a circular economy — turning a purchasing decision into a direct environmental action.</div>
+          <div class="ev-finding light"><strong>76%</strong> of engaged wine consumers take sustainability into account when purchasing wine. <em>Crichton-Fock et al., Frontiers in Psychology 2023, n=329</em></div>
+        </div>
+
+        <div class="benefit-item">
+          <div class="benefit-title">Minimised Environmental Impact</div>
+          <div class="benefit-body">Each purchase has a minimised carbon footprint, as the product maximises existing resources rather than relying on new extraction, processing or production.</div>
+        </div>
+
+        <div class="benefit-item">
+          <div class="benefit-title">Transparent, Eco-Friendly Choice</div>
+          <div class="benefit-body">The certification assures consumers of the product's sustainability, providing a clear, reliable and scientifically verified indicator of its low environmental impact — not just a marketing claim.</div>
+          <div class="ev-finding light"><strong>91%</strong> of wine consumers responded positively to purchasing a wine based on sensory information alone — if descriptors matched their profile. <strong>95%</strong> were open to a blended wine on the same basis. <em>Crichton-Fock et al., Frontiers in Psychology 2023, n=329</em></div>
+        </div>
+
+        <div class="benefit-item">
+          <div class="benefit-title">Engagement in Sustainable Consumption</div>
+          <div class="benefit-body">Buying certified products empowers consumers to actively support responsible, eco-friendly brands, aligning their spending with their environmental values and contributing to systemic change.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ════════════════════════════════════ -->
+<section id="services">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Our Services</div>
+      <div class="divider"></div>
+      <h2 class="section-title">From Analysis<br>to Certification</h2>
+      <p class="section-intro">Three steps bring your product from potential to certified. Each stage builds on the previous, ensuring no aspect of quality or environmental value is overlooked.</p>
+    </div>
+
+    <div class="services-flow" style="margin-top:4rem;">
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-num">01 — Analysis</div>
+        <div class="service-title">Consultation</div>
+        <div class="service-body">
+          We begin by understanding your product, your waste challenge and your goals. Handling your waste wine, food or other material with expert care, we perform an initial assessment using the Double Grip Analysis to identify upcycling potential.
+        </div>
+        <span class="service-tag">Identifying critical attributes &amp; upcycling potential</span>
+      </div>
+
+      <div class="service-arrow reveal reveal-delay-2">→</div>
+
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-num">02 — Classification</div>
+        <div class="service-title">Classification</div>
+        <div class="service-body">
+          Assessment of the product's potential upcycling level (0–4) using both analytical and analogical criteria. We map the product's qualities, limitations and ideal use cases to create a detailed upcycling profile.
+        </div>
+        <span class="service-tag">Level 0–4 · Analytical &amp; Analogical</span>
+      </div>
+
+      <div class="service-arrow reveal reveal-delay-3">→</div>
+
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-num">03 — Certification</div>
+        <div class="service-title">Certification</div>
+        <div class="service-body">
+          Guarantee for environmentally optimised use of the initial waste product. Certified products receive the Upcycled By seal, a traceable certificate and inclusion in our producer network — signalling verified sustainability to retailers and consumers worldwide.
+        </div>
+        <span class="service-tag">Verified · Traceable · Renewable</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TIMELINE ══════════════════════════════════════ -->
+<section id="timeline">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label" style="color:var(--gold)">The Research</div>
+      <div class="divider"></div>
+      <h2 class="section-title light">20 Years of Research</h2>
+      <p class="section-intro light">The Double Grip Analysis is not a startup claim. It is the result of two decades of continuous empirical research — from the first dialogue seminars in 2003 to peer-reviewed applications in upcycling, crossmodal communication and robotic cultivation. Three peer-reviewed studies published 2023–2024 directly validate its application to upcycled wine certification.</p>
+    </div>
+
+    <div class="timeline-stat reveal">
+      <div class="stat-cell">
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Years of continuous research</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">9</div>
+        <div class="stat-label">Peer-reviewed journal publications</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">3</div>
+        <div class="stat-label">International research institutions</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Doctoral thesis · KTH, 2011</div>
+      </div>
+    </div>
+
+    <div class="timeline-track">
+
+      <!-- ERA 1 -->
+      <div class="timeline-group reveal">
+        <div class="timeline-era">Foundation — 2003–2011</div>
+        <div class="timeline-items">
+          <div class="timeline-item">
+            <div class="timeline-year">2003</div>
+            <div class="timeline-content">
+              <div class="timeline-venue">ICCAS Conference · Bournemouth &amp; Örebro</div>
+              <div class="timeline-title">The professional language for wine tasters: improving communication by dialogue method</div>
+              <div class="timeline-authors">Crichton-Fock (publ. as Herdenstam), Hammarén, Ahlström &amp; Wiktorsson</div>
+              <span class="timeline-tag tag-core">Origin of the method</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2004</div>
+            <div class="timeline-content">
+              <div class="timeline-venue">Licentiate Thesis · KTH Royal Institute of Technology</div>
+              <div class="timeline-title">Sinnesupplevelsens estetik: vinprovaren, i gränslandet mellan konsten och vetenskapen</div>
+              <div class="timeline-authors">Anders P.F. Crichton-Fock (publ. as Herdenstam)</div>
+              <span class="timeline-tag tag-core">Art &amp; science borderland</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2009</div>
+            <div class="timeline-content">
+              <div class="timeline-venue">Journal of Wine Research · Vol. 20 (1), pp. 53–84</div>
+              <div class="timeline-title">The professional language of wine: perception, training and dialogue</div>
+              <div class="timeline-authors">Crichton-Fock (publ. as Herdenstam), Hammarén, Ahlström &amp; Wiktorsson</div>
+              <span class="timeline-tag tag-core">First peer-reviewed publication</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2011</div>
+            <div class="timeline-content">
+              <div class="timeline-venue">Doctoral Thesis · KTH Royal Institute of Technology</div>
+              <div class="timeline-title">Den arbetande gommen: vinprovarens dubbla grepp, från analys till upplevelse</div>
+              <div class="timeline-authors">Anders P.F. Crichton-Fock (publ. as Herdenstam)</div>
+              <span class="timeline-tag tag-core">The Double Grip fully defined</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ERA 2 -->
+      <div class="timeline-group reveal">
+        <div class="timeline-era">Empirical Validation — 2017–2020</div>
+        <div class="timeline-items">
+          <div class="timeline-item">
+            <div class="timeline-year">2018</div>
+            <div class="timeline-content">
+              <div class="timeline-venue">Int'l Journal of Gastronomy and Food Science · Vol. 13, pp. 78–89</div>
+              <div class="timeline-title">Sommelier training: Dialogue seminars and repertory grid method in combination as a pedagogical tool</div>
+              <div class="timeline-authors">Crichton-Fock (publ. as Herdenstam), Nilsen, Öström &amp; Harrington (Örebro + Washington State University)</div>
+              <span class="timeline-tag tag-core">Analogical training proven effective</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2020</div>
+            <div class="timeline-content">
+              <div class="timeline-venue">Int'l Journal of Gastronomy and Food Science · Vol. 20, 100210</div>
+              <div class="timeline-title">Breaking the silence: A pilot study investigating communication skills of sommeliers and chefs after analogical training</div>
+              <div class="timeline-authors">Crichton-Fock (publ. as Herdenstam), Nilsen &amp; Öström · Örebro University</div>
+              <span class="timeline-tag tag-core">Communication gains documented</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ERA 3 -->
+      <div class="timeline-group reveal">
+        <div class="timeline-era">Expansion &amp; Application — 2022–2024</div>
+        <div class="timeline-items">
+          <div class="timeline-item">
+            <div class="timeline-year">2022</div>
+            <div class="timeline-content">
+              <div class="timeline-venue">Int'l Journal of Gastronomy and Food Science · Vol. 29</div>
+              <div class="timeline-title">Nature versus machine: A pilot study using a semi-trained culinary panel to perform sensory evaluation of robot-cultivated basil</div>
+              <div class="timeline-authors">Crichton-Fock (publ. as Herdenstam), Kurtser, Swahn &amp; Arunachalam · Örebro University</div>
+              <span class="timeline-tag tag-expand">Human judgment vs algorithmic production</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2022</div>
+            <div class="timeline-content">
+              <div class="timeline-venue">EuroSense Conference · Turku, Finland</div>
+              <div class="timeline-title">Re:wine the world — A multisensory food rescue project aiming critical consumer attributes &amp; cross-modal communication</div>
+              <div class="timeline-authors">Anders P.F. Crichton-Fock (publ. as Herdenstam) · Örebro University</div>
+              <span class="timeline-tag tag-applied">Food rescue &amp; upcycling — method debut</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2023</div>
+            <div class="timeline-content">
+              <div class="timeline-venue">Frontiers in Psychology · 14:1190364</div>
+              <div class="timeline-title">Using crossmodal correspondences as a tool in wine communication</div>
+              <div class="timeline-authors">Crichton-Fock, Spence &amp; Pettersson · Örebro + Oxford University</div>
+              <span class="timeline-tag tag-expand">Crossmodal consumer communication</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2023</div>
+            <div class="timeline-content">
+              <div class="timeline-venue">Frontiers in Psychology · Vol. 14</div>
+              <div class="timeline-title">Enhancing the design of wine labels</div>
+              <div class="timeline-authors">Crichton-Fock, Spence, Mora &amp; Pettersson · Örebro + Oxford University</div>
+              <span class="timeline-tag tag-expand">Applied to visual &amp; label design</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2024</div>
+            <div class="timeline-content">
+              <div class="timeline-venue">Journal of Wine Research · Vol. 35 (2), pp. 139–159</div>
+              <div class="timeline-title">The imitation game — exploring the double-grip analysis for creating analog wines</div>
+              <div class="timeline-authors">Crichton-Fock &amp; Spence · Örebro + Oxford University · DOI: 10.1080/09571264.2024.2310307</div>
+              <span class="timeline-tag tag-core">DGA applied to upcycling — certification foundation</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2024</div>
+            <div class="timeline-content">
+              <div class="timeline-venue">Future Foods · Vol. 9</div>
+              <div class="timeline-title">Consumer perceptions and preferences for urban farming, hydroponics, and robotic cultivation</div>
+              <div class="timeline-authors">Califano, Crichton-Fock &amp; Spence · Örebro + Oxford University</div>
+              <span class="timeline-tag tag-expand">Method extended to full food system</span>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2024</div>
+            <div class="timeline-content">
+              <div class="timeline-venue">Gastronomiska Akademiens årsbok · Carlsson Bokförlag</div>
+              <div class="timeline-title">Sommelierens estetiska hantverk: Vinprovning som aristotelisk kunskap i handling</div>
+              <div class="timeline-authors">Crichton-Fock &amp; Scander</div>
+              <span class="timeline-tag tag-core">Aristotelian framework published — episteme · phronesis · techne</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /timeline-track -->
+  </div>
+</section>
+
+<!-- ═══ SCIENCE ══════════════════════════════════════ -->
+<section id="science">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Selected Publications</div>
+      <div class="divider"></div>
+      <h2 class="section-title">The Core Papers</h2>
+      <p class="section-intro">Key peer-reviewed publications directly underpinning the Upcycled By certification methodology.</p>
+    </div>
+
+    <div class="science-cats">
+
+      <div class="reveal reveal-delay-1">
+        <div class="science-cat-label">The Double Grip — Foundation &amp; Upcycling</div>
+        <div class="pub-grid-3">
+          <div class="pub-card">
+            <div class="pub-journal">Journal of Wine Research · 2024</div>
+            <div class="pub-title">The imitation game — exploring the double-grip analysis for creating analog wines</div>
+            <div class="pub-authors">Crichton-Fock &amp; Spence</div>
+            <div class="pub-year">Vol. 35 (2), pp. 139–159 · DOI: 10.1080/09571264.2024.2310307</div>
+          </div>
+          <div class="pub-card">
+            <div class="pub-journal">Int'l Journal of Gastronomy · 2018</div>
+            <div class="pub-title">Sommelier training: Dialogue seminars and repertory grid method in combination as a pedagogical tool</div>
+            <div class="pub-authors">Crichton-Fock (publ. as Herdenstam), Nilsen, Öström &amp; Harrington</div>
+            <div class="pub-year">Vol. 13, pp. 78–89</div>
+          </div>
+          <div class="pub-card">
+            <div class="pub-journal">Journal of Wine Research · 2009</div>
+            <div class="pub-title">The professional language of wine: perception, training and dialogue</div>
+            <div class="pub-authors">Crichton-Fock (publ. as Herdenstam), Hammarén, Ahlström &amp; Wiktorsson</div>
+            <div class="pub-year">Vol. 20 (1), pp. 53–84 · The method's first publication</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-2">
+        <div class="science-cat-label">Analogical Training &amp; Communication</div>
+        <div class="pub-grid-2">
+          <div class="pub-card">
+            <div class="pub-journal">Int'l Journal of Gastronomy · 2020</div>
+            <div class="pub-title">Breaking the silence: A pilot study investigating communication skills after analogical training</div>
+            <div class="pub-authors">Crichton-Fock (publ. as Herdenstam), Nilsen &amp; Öström · Örebro University</div>
+            <div class="pub-year">Vol. 20, 100210 · DOI: 10.1016/j.ijgfs.2020.100210</div>
+          </div>
+          <div class="pub-card">
+            <div class="pub-journal">Frontiers in Psychology · 2023</div>
+            <div class="pub-title">Using crossmodal correspondences as a tool in wine communication</div>
+            <div class="pub-authors">Crichton-Fock, Spence &amp; Pettersson · Örebro + Oxford</div>
+            <div class="pub-year">Vol. 14, 1190364 · DOI: 10.3389/fpsyg.2023.1190364</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-3">
+        <div class="science-cat-label">Human Judgment vs Algorithmic Production</div>
+        <div class="pub-grid-2">
+          <div class="pub-card">
+            <div class="pub-journal">Int'l Journal of Gastronomy · 2022</div>
+            <div class="pub-title">Nature versus machine: Sensory evaluation of robot-cultivated basil affected by mechanically induced stress</div>
+            <div class="pub-authors">Crichton-Fock (publ. as Herdenstam), Kurtser, Swahn &amp; Arunachalam · Örebro University</div>
+            <div class="pub-year">Vol. 29 — Human DGA vs algorithmic cultivation</div>
+          </div>
+          <div class="pub-card">
+            <div class="pub-journal">Future Foods · 2024</div>
+            <div class="pub-title">Consumer perceptions and preferences for urban farming, hydroponics, and robotic cultivation</div>
+            <div class="pub-authors">Califano, Crichton-Fock &amp; Spence · Örebro + Oxford</div>
+            <div class="pub-year">Vol. 9 — Method extended to urban food systems</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="science-note reveal">
+      <img src="assets/logo-upcycledby.png" alt="Upcycled By seal" style="width:70px;height:70px;object-fit:contain;flex-shrink:0;filter:brightness(0) invert(1);opacity:0.8;" />
+      <div class="science-note-body">
+        <strong>The Double Grip Analysis</strong> was originally developed in Anders Crichton-Fock's (formerly Herdenstam) doctoral dissertation <em>"Den arbetande gommen"</em> (KTH, 2011) — one in a chain of research going back to 2003. It has since been validated across multiple disciplines: sensory science, cognitive psychology, food technology and hospitality management, in collaboration with Örebro University, Oxford University, KTH and Washington State University.
+        <br><br>
+        Three peer-reviewed studies (2023–2024) document that <strong>91% of wine consumers</strong> respond positively to sensory-based purchasing decisions, <strong>54% prefer visual/crossmodal communication</strong> over traditional label formats, and that DGA-trained sommeliers can create upcycled wines that are rated equal to or above commercial counterparts. <em>Crichton-Fock &amp; Spence 2024; Crichton-Fock et al. 2023a,b</em>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ RESEARCH GROUP ═══════════════════════════════ -->
+<section id="researchgroup">
+  <div class="container">
+    <div class="reveal" style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
+      <div>
+        <div class="section-label">Rewine The World®</div>
+        <div class="divider"></div>
+        <h2 class="section-title">The Research Group</h2>
+      </div>
+      <a href="https://rewinetheworld.com" target="_blank" rel="noopener" style="display:inline-block;margin-top:0.5rem;padding:0.55rem 1.2rem;border:1px solid rgba(200,164,90,0.5);border-radius:3px;color:var(--gold);font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:background 0.2s;" onmouseover="this.style.background='rgba(200,164,90,0.1)'" onmouseout="this.style.background='transparent'">rewinetheworld.com →</a>
+    </div>
+
+    <div class="rg-intro">
+      <div class="rg-text reveal reveal-delay-1">
+        <p><strong>Rewine The World®</strong> is an independent international research platform founded in 2021 by Anders Crichton-Fock (formerly Herdenstam) at Campus Grythyttan, Örebro University.</p>
+        <p>The group conducts research within wine rescue, sensory communication, sommellierie and culinary science &amp; arts — developing novel methods for how complex food products can be better understood, communicated and preserved. Its work is driven by the questions: <em>how do we identify the full value of what already exists, and how do we communicate it?</em></p>
+        <p>The consortium brings together researchers from experimental psychology, sensory science, food chemistry, metabolomics, culinary arts and consumer research. Methods include sensory and chemical analysis, cross-modal experiments, analogical inductive methods and creative design.</p>
+        <p>Rewine The World® is not affiliated with or managed by Upcycled By. It is an independent research group whose ongoing work in novel sensory methods contributes to the broader scientific field from which the Double Grip Analysis and related methodologies continue to develop.</p>
+      </div>
+      <div class="rg-meta reveal reveal-delay-2">
+        <div class="rg-meta-item">
+          <div class="rg-meta-label">Founded</div>
+          <div class="rg-meta-value">2021 · Örebro University, Sweden</div>
+        </div>
+        <div class="rg-meta-item">
+          <div class="rg-meta-label">Chair</div>
+          <div class="rg-meta-value">Ass. Prof. Anders Crichton-Fock, PhD</div>
+        </div>
+        <div class="rg-meta-item">
+          <div class="rg-meta-label">Research Groups</div>
+          <div class="rg-meta-value">Learning &amp; Teaching in Hospitality, Culinary Arts &amp; Meal Science · Sense Lab — Future Sensory Experiences</div>
+        </div>
+        <div class="rg-meta-item">
+          <div class="rg-meta-label">Active Projects</div>
+          <div class="rg-meta-value">AI &amp; Culinary Practices · Nature vs Machine · Sommelier Training &amp; Critical Attribute Techniques · LOMAS</div>
+        </div>
+        <div class="rg-meta-item">
+          <div class="rg-meta-label">Status</div>
+          <div class="rg-meta-value">Independent research group — not affiliated with Upcycled By</div>
+        </div>
+        <div class="rg-meta-item">
+          <div class="rg-meta-label">Platform</div>
+          <div class="rg-meta-value"><a href="https://rewinetheworld.com" target="_blank" rel="noopener" style="color:var(--green);font-weight:500;">rewinetheworld.com ↗</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="rg-board-title">Advisory Board</div>
+      <div class="board-grid">
+
+        <!-- Chairman spans 2 cols -->
+        <div class="board-card chairman">
+          <div class="board-role">Chairman · Founder</div>
+          <div class="board-name">Ass. Prof. Anders Crichton-Fock, PhD</div>
+          <div class="board-institution">School of Hospitality, Culinary Arts &amp; Meal Science · Campus Grythyttan, Örebro University, Sweden</div>
+          <div class="board-bio">Creator of the Double Grip Analysis. Doctoral dissertation (KTH, 2011): <em>"The Working Palate: the wine taster's double grip."</em> Research focus: combining analytical and analogical sensory approaches for understanding future meals, consumer preferences and food waste reduction. Formerly published as A.P.F. Herdenstam.</div>
+        </div>
+
+        <div class="board-card reveal">
+          <div class="board-role">Advisory Board</div>
+          <div class="board-name">Prof. Charles Spence, PhD</div>
+          <div class="board-institution">Crossmodal Research Laboratory, Dept. of Experimental Psychology · Oxford University, UK</div>
+          <div class="board-bio">Experimental psychologist specialising in multisensory design. Founded the Crossmodal Research Laboratory (1997). Author of 1,000+ academic articles and books including <em>Gastrophysics</em> (2017) and <em>Sensehacking</em> (2021).</div>
+        </div>
+
+        <div class="board-card reveal">
+          <div class="board-role">Advisory Board</div>
+          <div class="board-name">Prof. Robert J. Harrington, PhD</div>
+          <div class="board-institution">School of Hospitality Business Management · Washington State University, USA</div>
+          <div class="board-bio">Ivar B. Haglund Chair in Hospitality Business Management. PhD in Strategic Management. Former Dean at Nicholls State University. Research: food &amp; wine pairing, beverage innovation, hospitality strategies.</div>
+        </div>
+
+        <div class="board-card reveal">
+          <div class="board-role">Advisory Board</div>
+          <div class="board-name">Prof. Emeritus Ole G. Mouritsen, PhD</div>
+          <div class="board-institution">Dept. of Food Science · University of Copenhagen, Denmark</div>
+          <div class="board-bio">Physicist and professor of gastrophysics and culinary innovation. Author of 400+ scientific papers. DuPont Nutrition &amp; Health Science Medal (2016). President, Danish Gastronomical Academy; Director, Taste for Life research centre.</div>
+        </div>
+
+        <div class="board-card reveal">
+          <div class="board-role">Advisory Board</div>
+          <div class="board-name">Prof. Tuulia Hyötyläinen, PhD</div>
+          <div class="board-institution">School of Science and Technology · Örebro University, Sweden</div>
+          <div class="board-bio">Metabolomics researcher. Develops high-throughput methodologies using chromatographic methods and mass spectrometry. Expertise in non-targeted and targeted metabolite profiling and unknown compound identification.</div>
+        </div>
+
+        <div class="board-card reveal">
+          <div class="board-role">Advisory Board</div>
+          <div class="board-name">Researcher María Mora, PhD</div>
+          <div class="board-institution">BCCInnovation, Basque Culinary Center · Spain</div>
+          <div class="board-bio">Sensory scientist and product developer at the Gastronomy Technological Center. Doctoral research: emotional consumer responses to wine and beer. M.S. in Food Science and Technology.</div>
+        </div>
+
+        <div class="board-card reveal">
+          <div class="board-role">Advisory Board</div>
+          <div class="board-name">MW Tim Hanni</div>
+          <div class="board-institution">Calyber LLC · Washington State University &amp; Linfield University, USA</div>
+          <div class="board-bio">First American Master of Wine (1990). 50+ years wine industry experience. Creator of myVinotype.com. Author: <em>"Why You Like the Wines You Like."</em> Called "the wine anti-snob" by the Wall Street Journal.</div>
+        </div>
+
+        <div class="board-card reveal">
+          <div class="board-role">Advisory Board</div>
+          <div class="board-name">Elin Aronsen Beis</div>
+          <div class="board-institution">Foodloopz · Sweden</div>
+          <div class="board-bio">President &amp; Founder of Foodloopz. Food waste consultant specialising in sustainable food production and innovative circular solutions. Background in marketing, design and project management.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CLIENTS ══════════════════════════════════════ -->
+<section id="clients">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Partners &amp; Clients</div>
+      <div class="divider"></div>
+      <h2 class="section-title">Our Clients &amp; Friends</h2>
+    </div>
+
+    <div class="clients-grid">
+      <div class="client-cell reveal reveal-delay-1">
+        <div class="client-icon logo-wide">
+          <img src="assets/fotografiska.svg" alt="Fotografiska" />
+        </div>
+        <div class="client-name">Fotografiska</div>
+        <div class="client-type">Museum &amp; Hospitality</div>
+      </div>
+      <div class="client-cell reveal reveal-delay-1">
+        <div class="client-icon logo-wide">
+          <img src="assets/grythyttan.png" alt="Grythyttan" />
+        </div>
+        <div class="client-name">Grythyttan</div>
+        <div class="client-type">Culinary Science &amp; Innovation</div>
+      </div>
+      <div class="client-cell reveal reveal-delay-2">
+        <div class="client-icon logo-wide">
+          <img src="assets/orebro-uni-t.png" alt="Örebro Universitet" />
+        </div>
+        <div class="client-name">Örebro Universitet</div>
+        <div class="client-type">Academic Partner</div>
+      </div>
+      <div class="client-cell reveal reveal-delay-2">
+        <div class="client-icon logo-wide">
+          <img src="assets/foodloopz.png" alt="Foodloopz" />
+        </div>
+        <div class="client-name">Foodloopz</div>
+        <div class="client-type">Food Waste Platform</div>
+      </div>
+    </div>
+
+    <div class="clients-cta reveal">
+      <p>Want to join the network? Reach out and let's explore what your waste can become.</p>
+      <div class="clients-email">hi@upcycledby.com</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ SCIENCE DEEP ════════════════════════════════════════════════ -->
+<section id="science-deep">
+  <div class="container">
+
+    <div class="section-label">Research Model &amp; Foundation</div>
+    <div class="divider"></div>
+    <h2 class="section-title">The Science<br>Behind the Seal</h2>
+    <p class="section-intro">The Double Grip Analysis is not a startup claim. It is the result of two decades of empirical research — and a methodology that bridges art and science to identify, communicate and certify upcycled value.</p>
+
+    <div class="sd-intro-box">
+      <div>
+        <h3>Two grips.<br><em>One method.</em><br>Zero waste.</h3>
+        <p>From the first encounter to the farewell — the analytical grip isolates what can be measured, the analogical grip captures what can only be experienced. Neither alone is sufficient. Together, they form a trained capacity to pendulate between science and art in real time.</p>
+      </div>
+      <div class="sd-stats">
+        <div class="sd-stat"><div class="sd-stat-n">20+</div><div class="sd-stat-l">Years of research</div></div>
+        <div class="sd-stat"><div class="sd-stat-n">9+</div><div class="sd-stat-l">Peer-reviewed publications</div></div>
+        <div class="sd-stat"><div class="sd-stat-n">4</div><div class="sd-stat-l">International institutions</div></div>
+        <div class="sd-stat"><div class="sd-stat-n">47</div><div class="sd-stat-l">Referenced sources</div></div>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-bottom:1rem;">A Four-Level Model</div>
+    <div class="divider"></div>
+    <h2 class="section-title" style="margin-bottom:0.75rem;">From Perception<br>to Resource Efficiency</h2>
+    <p class="section-intro">From individual sensory perception to systemic alignment — the Double Grip framework eliminates waste at every level of the value chain.</p>
+
+    <div class="ml">
+      <div class="ml-num">01</div>
+      <div>
+        <div class="ml-tag">Sensory Foundation</div>
+        <h3 class="ml-h">The Two Grips</h3>
+        <p class="ml-p">Wine is not a static product — it is an event. From the first encounter (attack) to the farewell (finish), it passes through senses that cannot be isolated. The analytical grip gives deductive precision; the analogical grip gives inductive gestalt. Together they form the Double Grip — a trained capacity to pendulate between science and art in real time.</p>
+        <div class="ml-cards">
+          <div class="ml-card"><div class="ml-card-n" style="color:var(--gold)">Analytical grip</div><div class="ml-card-d">Vision · odour · taste · tactile. Deductive. "What can I find in the glass?" <em>(Herdenstam 2011)</em></div></div>
+          <div class="ml-card"><div class="ml-card-n" style="color:var(--green)">Analogical grip</div><div class="ml-card-d">Metaphors · memories · gestalt. Inductive. "What does this wine awaken within me?" <em>(Herdenstam et al. 2020)</em></div></div>
+          <div class="ml-card"><div class="ml-card-n">The Double Grip</div><div class="ml-card-d">The pendulum between registers. Trained capacity. Core of certification since KTH 2011.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ml">
+      <div class="ml-num">02</div>
+      <div>
+        <div class="ml-tag">Contextual Modulation</div>
+        <h3 class="ml-h">The Multisensory Environment</h3>
+        <p class="ml-p">Sensory experience is modulated in real time by context. Crossmodal research documents that music, light, shape, touch and ambient scent all measurably affect taste perception and consumer acceptance — the mechanism used to align product and consumer, reducing the interpretation gap that drives waste.</p>
+        <div class="ml-cards">
+          <div class="ml-card"><div class="ml-card-n">Visual</div><div class="ml-card-d">Shapes/colors ranked #1 preferred alternative communication (54% of consumers). <em>(Crichton-Fock et al. 2023)</em></div></div>
+          <div class="ml-card"><div class="ml-card-n">Music &amp; Sound</div><div class="ml-card-d">Staccato/legato and tempo affect perceived acidity and structure. <em>(Spence et al. 2014)</em></div></div>
+          <div class="ml-card"><div class="ml-card-n">Scent Memory</div><div class="ml-card-d">Scent-evoked nostalgia builds the deepest emotional bond to a product. <em>(Reid et al. 2015)</em></div></div>
+          <div class="ml-card"><div class="ml-card-n">Haptics</div><div class="ml-card-d">Glass weight and surface texture affect perceived premium quality. <em>(Wang &amp; Spence 2018)</em></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ml">
+      <div class="ml-num">03</div>
+      <div>
+        <div class="ml-tag">Dialogue-Based Consensus</div>
+        <h3 class="ml-h">From Individual to Shared Language</h3>
+        <p class="ml-p">Individual sensory experience is the starting point — not the endpoint. Three sequential steps build a shared language and identify the critical attributes, moving from personal, autobiographical analogy to inter-subjective consensus without losing the richness of the individual experience.</p>
+        <div class="ml-chain">
+          <div class="ml-step"><div class="ml-step-n">1 · Autobiographic Tasting</div><div class="ml-step-t">Individual scent memories and impulses. Flow rather than protocol. <em>(Csíkszentmihályi 2008)</em></div></div>
+          <div class="ml-step"><div class="ml-step-n">2 · Dialogue Consensus (DCT)</div><div class="ml-step-t">Analogies meet, shared vocabulary emerges. <em>(Göranzon &amp; Hammarén 2006)</em></div></div>
+          <div class="ml-step"><div class="ml-step-n">3 · Critical Attribute (CAT)</div><div class="ml-step-t">Upcycling level 0–4 established. Optimal-use profile created. <em>(Herdenstam et al. 2020)</em></div></div>
+          <div class="ml-step"><div class="ml-step-n">4 · Wine Geometric System™</div><div class="ml-step-t">Attack · mid-palate · finish as geometric form. <em>(Crichton-Fock &amp; Spence 2024)</em></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ml">
+      <div class="ml-num">04</div>
+      <div>
+        <div class="ml-tag">Resource Efficiency &amp; Alignment</div>
+        <h3 class="ml-h">Closing the Interpretation Gap</h3>
+        <p class="ml-p">The interpretation gap between producer and consumer is the root of waste. When a shared sensory language is built — supported by crossmodal tools — the gap narrows. <strong>95%</strong> of consumers were open to purchasing a blended wine if sensory descriptors matched their preference. <strong>91%</strong> were positive to buying based on sensory information alone. <em>(Crichton-Fock et al., Frontiers in Psychology 2023, n=329 engaged wine consumers)</em></p>
+        <div class="ml-cards">
+          <div class="ml-card"><div class="ml-card-n" style="color:var(--gold)">Producer</div><div class="ml-card-d">DGA profile → upcycling level 0–4 → decision on blend, repackaging or redistribution.</div></div>
+          <div class="ml-card"><div class="ml-card-n" style="color:var(--green)">Distributor / HORECA</div><div class="ml-card-d">Understands the analogical profile. Matches context, guest and dish with precision.</div></div>
+          <div class="ml-card"><div class="ml-card-n">Consumer</div><div class="ml-card-d">Crossmodal communication creates correct expectation. A purchase becomes a sustainable choice.</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+    <!-- Research findings summary -->
+    <div style="margin-top:3rem;padding:2rem 2.5rem;background:rgba(1,57,39,0.06);border:1px solid rgba(1,57,39,0.12);border-radius:var(--radius);display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1.5rem;">
+      <div>
+        <div style="font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;">JWR 2024 · n=20 consumers</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--green);line-height:1;margin-bottom:0.4rem;">50%</div>
+        <div style="font-size:0.78rem;color:var(--text-muted);line-height:1.55;">of DGA-trained sommelier groups produced upcycled wines rated <strong style="color:var(--text);">above commercial counterparts</strong> in blind tasting</div>
+      </div>
+      <div>
+        <div style="font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;">FiP 2023 · n=329 consumers</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--green);line-height:1;margin-bottom:0.4rem;">95% / 91%</div>
+        <div style="font-size:0.78rem;color:var(--text-muted);line-height:1.55;">open to blended wine / sensory-only purchase — <strong style="color:var(--text);">if descriptors matched their profile</strong></div>
+      </div>
+      <div>
+        <div style="font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;">FiP 2023 · n=329 consumers</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--green);line-height:1;margin-bottom:0.4rem;">54%</div>
+        <div style="font-size:0.78rem;color:var(--text-muted);line-height:1.55;">chose shapes/colors as #1 alternative communication — <strong style="color:var(--text);">over 6 other modalities including text</strong></div>
+      </div>
+      <div>
+        <div style="font-size:0.6rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;">IJG 2018 · Sommelier training</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--green);line-height:1;margin-bottom:0.4rem;">3 → 8</div>
+        <div style="font-size:0.78rem;color:var(--text-muted);line-height:1.55;">shared attribute categories after analogical training — <strong style="color:var(--text);">vs. no increase with analytical training alone</strong></div>
+      </div>
+    </div>
+</section>
+
+<!-- ═══ REFERENCES ══════════════════════════════════════════════════ -->
+<section id="ref-section">
+  <div class="container">
+    <div class="section-label">Research Foundation</div>
+    <div class="divider"></div>
+    <h2 class="section-title">References</h2>
+    <p class="section-intro">47 peer-reviewed and scholarly sources — the complete foundation of the Double Grip Analysis and the Upcycled By certification methodology.</p>
+    <table class="ref-table">
+      <tbody>
+        <tr><td class="ref-yr-cell">2024</td><td class="ref-body-cell"><div class="ref-auth">Crichton-Fock APF & Spence C</div><div class="ref-title">The imitation game — exploring the double-grip analysis for creating analog wines</div><div class="ref-src">Journal of Wine Research, 35(2), 139–159. DOI: 10.1080/09571264.2024.2310307</div><div><span class="rp rp-own">Own</span><span class="rp rp-dga">DGA</span><span class="rp rp-cross">Crossmodal</span></div></td></tr>
+<tr><td class="ref-yr-cell">2024</td><td class="ref-body-cell"><div class="ref-auth">Califano G, Crichton-Fock APF & Spence C</div><div class="ref-title">Consumer perceptions and preferences for urban farming, hydroponics, and robotic cultivation</div><div class="ref-src">Future Foods, Vol. 9.</div><div><span class="rp rp-own">Own</span><span class="rp rp-robot">Robot</span><span class="rp rp-food">Food</span></div></td></tr>
+<tr><td class="ref-yr-cell">2024</td><td class="ref-body-cell"><div class="ref-auth">Crichton-Fock APF & Scander H</div><div class="ref-title">Sommelierens estetiska hantverk: Vinprovning som aristotelisk kunskap i handling</div><div class="ref-src">Gastronomiska Akademiens årsbok, Carlsson Bokförlag</div><div><span class="rp rp-own">Own</span><span class="rp rp-dga">DGA</span><span class="rp rp-dial">Dialogue</span></div></td></tr>
+<tr><td class="ref-yr-cell">2023</td><td class="ref-body-cell"><div class="ref-auth">Crichton-Fock A, Spence C & Pettersson N</div><div class="ref-title">Using crossmodal correspondences as a tool in wine communication</div><div class="ref-src">Frontiers in Psychology, 14:1190364. DOI: 10.3389/fpsyg.2023.1190364</div><div><span class="rp rp-own">Own</span><span class="rp rp-cross">Crossmodal</span><span class="rp rp-sens">Sensory</span></div></td></tr>
+<tr><td class="ref-yr-cell">2023</td><td class="ref-body-cell"><div class="ref-auth">Crichton-Fock A, Spence C, Mora M & Pettersson N</div><div class="ref-title">Enhancing the design of wine labels</div><div class="ref-src">Frontiers in Psychology, 14:1176794. DOI: 10.3389/fpsyg.2023.1176794</div><div><span class="rp rp-own">Own</span><span class="rp rp-cross">Crossmodal</span><span class="rp rp-sens">Sensory</span></div></td></tr>
+<tr><td class="ref-yr-cell">2023</td><td class="ref-body-cell"><div class="ref-auth">Spence C</div><div class="ref-title">Explaining visual shape-taste crossmodal correspondences</div><div class="ref-src">Multisensory Research, 36, 313–345.</div><div><span class="rp rp-cross">Crossmodal</span></div></td></tr>
+<tr><td class="ref-yr-cell">2022</td><td class="ref-body-cell"><div class="ref-auth">Crichton-Fock APF, Kurtser K, Swahn J & Arunachalam A</div><div class="ref-title">Nature versus machine: sensory evaluation of robot-cultivated basil</div><div class="ref-src">Int'l Journal of Gastronomy and Food Science, 29, 100578.</div><div><span class="rp rp-own">Own</span><span class="rp rp-robot">Robot</span><span class="rp rp-sens">Sensory</span></div></td></tr>
+<tr><td class="ref-yr-cell">2022</td><td class="ref-body-cell"><div class="ref-auth">Crichton-Fock APF</div><div class="ref-title">Re:wine the world — A multisensory food rescue project</div><div class="ref-src">EuroSense Conference, Turku, Finland</div><div><span class="rp rp-own">Own</span><span class="rp rp-dga">DGA</span><span class="rp rp-cross">Crossmodal</span></div></td></tr>
+<tr><td class="ref-yr-cell">2022</td><td class="ref-body-cell"><div class="ref-auth">Spence C & Van Doorn G</div><div class="ref-title">Visual communication via the design of food and beverage packaging</div><div class="ref-src">Cognitive Research, 7:42.</div><div><span class="rp rp-cross">Crossmodal</span><span class="rp rp-food">Food</span></div></td></tr>
+<tr><td class="ref-yr-cell">2022</td><td class="ref-body-cell"><div class="ref-auth">Spence C</div><div class="ref-title">Experimental atmospherics: a multi-sensory perspective</div><div class="ref-src">Qualitative Market Research, 25, 662–673.</div><div><span class="rp rp-cross">Crossmodal</span><span class="rp rp-sens">Sensory</span></div></td></tr>
+<tr><td class="ref-yr-cell">2022</td><td class="ref-body-cell"><div class="ref-auth">Hoffmann CH</div><div class="ref-title">Is AI intelligent? 70 years after Turing</div><div class="ref-src">Technology in Society, 68, 101893.</div><div><span class="rp rp-robot">Robot</span></div></td></tr>
+<tr><td class="ref-yr-cell">2021</td><td class="ref-body-cell"><div class="ref-auth">Croijmans I & Wang QJ</div><div class="ref-title">Do you want a description with that wine?</div><div class="ref-src">Journal of Sensory Studies, 37:e12712.</div><div><span class="rp rp-cross">Crossmodal</span><span class="rp rp-sens">Sensory</span><span class="rp rp-lang">Language</span></div></td></tr>
+<tr><td class="ref-yr-cell">2021</td><td class="ref-body-cell"><div class="ref-auth">Torres-Martínez S</div><div class="ref-title">Complexes, rule-following, and language games</div><div class="ref-src">Semiotica, 2021(242), 63–100.</div><div><span class="rp rp-dial">Dialogue</span><span class="rp rp-lang">Language</span></div></td></tr>
+<tr><td class="ref-yr-cell">2020</td><td class="ref-body-cell"><div class="ref-auth">Crichton-Fock APF, Nilsen AN & Öström Å</div><div class="ref-title">Breaking the silence: communication skills after analogical training</div><div class="ref-src">Int'l Journal of Gastronomy and Food Science, 20, 100210.</div><div><span class="rp rp-own">Own</span><span class="rp rp-dga">DGA</span><span class="rp rp-dial">Dialogue</span></div></td></tr>
+<tr><td class="ref-yr-cell">2020</td><td class="ref-body-cell"><div class="ref-auth">Spence C</div><div class="ref-title">Senses of place: architectural design for the multisensory mind</div><div class="ref-src">Cognitive Research, 5:46.</div><div><span class="rp rp-cross">Crossmodal</span></div></td></tr>
+<tr><td class="ref-yr-cell">2020</td><td class="ref-body-cell"><div class="ref-auth">Croijmans I, Speed LJ, Arshamian A & Majid A</div><div class="ref-title">Expertise shapes multimodal imagery for wine</div><div class="ref-src">Cognitive Science, 44(5):e12842.</div><div><span class="rp rp-sens">Sensory</span><span class="rp rp-cross">Crossmodal</span><span class="rp rp-lang">Language</span></div></td></tr>
+<tr><td class="ref-yr-cell">2019</td><td class="ref-body-cell"><div class="ref-auth">Heatherly M, Dein M, Munafo JP & Luckett CR</div><div class="ref-title">Crossmodal correspondence between color, shapes, and wine odors</div><div class="ref-src">Food Quality and Preference, 71, 395–405.</div><div><span class="rp rp-cross">Crossmodal</span><span class="rp rp-sens">Sensory</span></div></td></tr>
+<tr><td class="ref-yr-cell">2019</td><td class="ref-body-cell"><div class="ref-auth">De Luca M, Campo R & Lee R</div><div class="ref-title">Mozart or pop music? Effects of background music on wine consumers</div><div class="ref-src">Int'l Journal of Wine Business Research, 31(3), 406–418.</div><div><span class="rp rp-cross">Crossmodal</span><span class="rp rp-sens">Sensory</span></div></td></tr>
+<tr><td class="ref-yr-cell">2018</td><td class="ref-body-cell"><div class="ref-auth">Crichton-Fock APF, Nilsen AN, Öström Å & Harrington RJ</div><div class="ref-title">Sommelier training: Dialogue seminars and repertory grid method</div><div class="ref-src">Int'l Journal of Gastronomy and Food Science, 13, 78–89.</div><div><span class="rp rp-own">Own</span><span class="rp rp-dga">DGA</span><span class="rp rp-dial">Dialogue</span></div></td></tr>
+<tr><td class="ref-yr-cell">2018</td><td class="ref-body-cell"><div class="ref-auth">Wang QJ & Spence C</div><div class="ref-title">A smooth wine? Haptic influences on wine evaluation</div><div class="ref-src">Int'l Journal of Gastronomy and Food Science, 14, 9–13.</div><div><span class="rp rp-cross">Crossmodal</span><span class="rp rp-sens">Sensory</span></div></td></tr>
+<tr><td class="ref-yr-cell">2018</td><td class="ref-body-cell"><div class="ref-auth">Wang QJ & Spence C</div><div class="ref-title">Wine complexity: an empirical investigation</div><div class="ref-src">Food Quality and Preference, 68, 238.</div><div><span class="rp rp-cross">Crossmodal</span><span class="rp rp-sens">Sensory</span></div></td></tr>
+<tr><td class="ref-yr-cell">2017</td><td class="ref-body-cell"><div class="ref-auth">Hagtvedt H & Brasel SA</div><div class="ref-title">Cross-modal communication: sound frequency influences consumer responses</div><div class="ref-src">Journal of Marketing Research, 53, 551–562.</div><div><span class="rp rp-cross">Crossmodal</span></div></td></tr>
+<tr><td class="ref-yr-cell">2016</td><td class="ref-body-cell"><div class="ref-auth">Lehrer K & Lehrer A</div><div class="ref-title">The language of taste</div><div class="ref-src">Inquiry, 59(6), 752–765.</div><div><span class="rp rp-lang">Language</span><span class="rp rp-sens">Sensory</span></div></td></tr>
+<tr><td class="ref-yr-cell">2015</td><td class="ref-body-cell"><div class="ref-auth">Spence C & Wang QJ</div><div class="ref-title">Wine and music I, II, III</div><div class="ref-src">Flavour, 4:34, 4:33, 4:36.</div><div><span class="rp rp-cross">Crossmodal</span><span class="rp rp-sens">Sensory</span></div></td></tr>
+<tr><td class="ref-yr-cell">2015</td><td class="ref-body-cell"><div class="ref-auth">Reid CA, Green JD, Wildschut T & Sedikides C</div><div class="ref-title">Scent-evoked nostalgia</div><div class="ref-src">Memory, 23(2), 157–166.</div><div><span class="rp rp-sens">Sensory</span><span class="rp rp-cross">Crossmodal</span></div></td></tr>
+<tr><td class="ref-yr-cell">2014</td><td class="ref-body-cell"><div class="ref-auth">Spence C, Velasco C & Knoeferle K</div><div class="ref-title">A large sample study on the multisensory environment and wine drinking</div><div class="ref-src">Flavour, 3:8.</div><div><span class="rp rp-cross">Crossmodal</span><span class="rp rp-sens">Sensory</span></div></td></tr>
+<tr><td class="ref-yr-cell">2014</td><td class="ref-body-cell"><div class="ref-auth">Fusaroli R, Rączaszek-Leonardi J & Tylén K</div><div class="ref-title">Dialog as interpersonal synergy</div><div class="ref-src">New Ideas in Psychology, 32, 147–157.</div><div><span class="rp rp-dial">Dialogue</span><span class="rp rp-lang">Language</span></div></td></tr>
+<tr><td class="ref-yr-cell">2013</td><td class="ref-body-cell"><div class="ref-auth">Deroy O, Crisinel AS & Spence C</div><div class="ref-title">Crossmodal correspondences between odors, musical notes, and geometrical shapes</div><div class="ref-src">Psychonomic Bulletin & Review, 20, 878–896.</div><div><span class="rp rp-cross">Crossmodal</span><span class="rp rp-sens">Sensory</span></div></td></tr>
+<tr><td class="ref-yr-cell">2013</td><td class="ref-body-cell"><div class="ref-auth">Hanson-Vaux G, Crisinel AS & Spence C</div><div class="ref-title">Smelling shapes: Crossmodal correspondences between odors and shapes</div><div class="ref-src">Chemical Senses, 38, 161–166.</div><div><span class="rp rp-cross">Crossmodal</span></div></td></tr>
+<tr><td class="ref-yr-cell">2013</td><td class="ref-body-cell"><div class="ref-auth">Paradis C & Eeg-Olofsson M</div><div class="ref-title">Describing sensory experience: the genre of wine reviews</div><div class="ref-src">Metaphor and Symbol, 28(1), 22–40.</div><div><span class="rp rp-lang">Language</span><span class="rp rp-sens">Sensory</span></div></td></tr>
+<tr><td class="ref-yr-cell">2013</td><td class="ref-body-cell"><div class="ref-auth">Christ KL & Burritt RL</div><div class="ref-title">Critical environmental concerns in wine production</div><div class="ref-src">Journal of Cleaner Production, 53, 232–242.</div><div><span class="rp rp-food">Food</span></div></td></tr>
+<tr><td class="ref-yr-cell">2012</td><td class="ref-body-cell"><div class="ref-auth">Crisinel AS & Spence C</div><div class="ref-title">A fruity note: Crossmodal associations between odors and musical notes</div><div class="ref-src">Chemical Senses, 37(2), 151–158.</div><div><span class="rp rp-cross">Crossmodal</span><span class="rp rp-sens">Sensory</span></div></td></tr>
+<tr><td class="ref-yr-cell">2012</td><td class="ref-body-cell"><div class="ref-auth">Piqueras-Fiszman B & Spence C</div><div class="ref-title">The weight of the bottle as extrinsic cue for wine quality</div><div class="ref-src">Food Quality and Preference, 25, 41–45.</div><div><span class="rp rp-cross">Crossmodal</span><span class="rp rp-sens">Sensory</span></div></td></tr>
+<tr><td class="ref-yr-cell">2012</td><td class="ref-body-cell"><div class="ref-auth">Varela P & Ares G</div><div class="ref-title">Sensory profiling, the blurred line between sensory and consumer science</div><div class="ref-src">Food Research International, 48, 893–908.</div><div><span class="rp rp-sens">Sensory</span><span class="rp rp-food">Food</span></div></td></tr>
+<tr><td class="ref-yr-cell">2011</td><td class="ref-body-cell"><div class="ref-auth">Crichton-Fock APF (publ. as Herdenstam)</div><div class="ref-title">Den arbetande gommen: vinprovarens dubbla grepp</div><div class="ref-src">Doctoral Thesis, KTH Royal Institute of Technology</div><div><span class="rp rp-own">Own</span><span class="rp rp-dga">DGA</span><span class="rp rp-dial">Dialogue</span></div></td></tr>
+<tr><td class="ref-yr-cell">2011</td><td class="ref-body-cell"><div class="ref-auth">Spence C</div><div class="ref-title">Crossmodal correspondences: a tutorial review</div><div class="ref-src">Attention, Perception & Psychophysics, 73, 971–995.</div><div><span class="rp rp-cross">Crossmodal</span></div></td></tr>
+<tr><td class="ref-yr-cell">2010</td><td class="ref-body-cell"><div class="ref-auth">Gallace A & Spence C</div><div class="ref-title">The science of interpersonal touch: an overview</div><div class="ref-src">Neuroscience & Biobehavioral Reviews, 34, 246–259.</div><div><span class="rp rp-cross">Crossmodal</span></div></td></tr>
+<tr><td class="ref-yr-cell">2009</td><td class="ref-body-cell"><div class="ref-auth">Crichton-Fock APF, Hammarén M, Ahlström R & Wiktorsson PÅ</div><div class="ref-title">The professional language of wine: perception, training and dialogue</div><div class="ref-src">Journal of Wine Research, 20(1), 53–84.</div><div><span class="rp rp-own">Own</span><span class="rp rp-dga">DGA</span><span class="rp rp-dial">Dialogue</span><span class="rp rp-lang">Language</span></div></td></tr>
+<tr><td class="ref-yr-cell">2008</td><td class="ref-body-cell"><div class="ref-auth">Csíkszentmihályi M</div><div class="ref-title">Flow: The psychology of optimal experience</div><div class="ref-src">Harper Perennial.</div><div><span class="rp rp-dial">Dialogue</span><span class="rp rp-sens">Sensory</span></div></td></tr>
+<tr><td class="ref-yr-cell">2008</td><td class="ref-body-cell"><div class="ref-auth">Harrington RJ</div><div class="ref-title">Food & wine pairing: a sensory experience</div><div class="ref-src">John Wiley.</div><div><span class="rp rp-sens">Sensory</span><span class="rp rp-food">Food</span></div></td></tr>
+<tr><td class="ref-yr-cell">2006</td><td class="ref-body-cell"><div class="ref-auth">Göranzon B & Hammarén M</div><div class="ref-title">The methodology of the dialogue seminar</div><div class="ref-src">In: Dialogue, Skill and Tacit Knowledge. John Wiley & Sons.</div><div><span class="rp rp-dial">Dialogue</span></div></td></tr>
+<tr><td class="ref-yr-cell">2006</td><td class="ref-body-cell"><div class="ref-auth">Shepherd GM</div><div class="ref-title">Smell images and the flavour system in the human brain</div><div class="ref-src">Nature, 444, 316–321.</div><div><span class="rp rp-sens">Sensory</span></div></td></tr>
+<tr><td class="ref-yr-cell">2005</td><td class="ref-body-cell"><div class="ref-auth">Göranzon B, Hammarén M & Ratkić A</div><div class="ref-title">Training in analogical thinking: The dialogue seminar method</div><div class="ref-src">In: Dialogue, Skill and Tacit Knowledge. John Wiley.</div><div><span class="rp rp-dial">Dialogue</span></div></td></tr>
+<tr><td class="ref-yr-cell">2004</td><td class="ref-body-cell"><div class="ref-auth">Crichton-Fock APF (publ. as Herdenstam)</div><div class="ref-title">Sinnesupplevelsens estetik: vinprovaren, i gränslandet mellan konsten och vetenskapen</div><div class="ref-src">Licentiate Thesis, KTH Royal Institute of Technology</div><div><span class="rp rp-own">Own</span><span class="rp rp-dga">DGA</span></div></td></tr>
+<tr><td class="ref-yr-cell">2003</td><td class="ref-body-cell"><div class="ref-auth">Crichton-Fock APF, Hammarén M, Ahlström R & Wiktorsson A</div><div class="ref-title">The professional language for wine tasters: improving communication by dialogue method</div><div class="ref-src">ICCAS Conference, Bournemouth & Örebro</div><div><span class="rp rp-own">Own</span><span class="rp rp-dial">Dialogue</span><span class="rp rp-lang">Language</span></div></td></tr>
+<tr><td class="ref-yr-cell">2000</td><td class="ref-body-cell"><div class="ref-auth">Chu S & Downes JJ</div><div class="ref-title">Long live Proust: The odour-cued autobiographical memory bump</div><div class="ref-src">Cognition, 75(2), B41–B50.</div><div><span class="rp rp-sens">Sensory</span><span class="rp rp-dial">Dialogue</span></div></td></tr>
+<tr><td class="ref-yr-cell">1968</td><td class="ref-body-cell"><div class="ref-auth">Wittgenstein L</div><div class="ref-title">Philosophical investigations (3rd ed.)</div><div class="ref-src">Blackwell.</div><div><span class="rp rp-dial">Dialogue</span><span class="rp rp-lang">Language</span></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<!-- ═══ 4-TIER PRODUCT MODEL ════════════════════════════════════════ -->
+<section id="four-tier">
+  <div class="container">
+
+    <div class="section-label" style="color:var(--gold)">Upcycling Output</div>
+    <div class="divider"></div>
+    <h2 class="section-title light">The 4-Tier Product Model</h2>
+
+    <div class="tier-intro">
+      <div>
+        <p>The Double Grip Analysis does not end with evaluation — it ends with a decision. <strong>Which tier does this material belong to?</strong> The four tiers represent a spectrum of resource optimisation: from the least-processed product closest to origin, to maximum extraction where nothing is wasted.</p>
+        <p><strong>Both grips are applied at every tier</strong> — but their emphasis shifts. For wines rescued without blending (Tier 1), the analytical grip maps quality while the analogical grip finds the new context. For new categories and maximum extraction (Tier 3–4), the analogical grip builds the product's identity from scratch, the analytical grip secures quality.</p>
+        <p><strong>Packaging rule:</strong> Tier 1 &amp; 2 are available in all five formats. Tier 3 &amp; 4 are delivered exclusively in cans — the can surface becomes the primary crossmodal communication canvas. <em>(Wang &amp; Spence 2018; Velasco et al. 2015)</em></p>
+      </div>
+      <div>
+        <div class="tier-flow">
+          <div>
+            <div class="tier-flow-label">DGA Analysis</div>
+            <div class="tfi">01 · Both grips — Analytical primary</div>
+            <div class="tfi">02 · Both grips — Analogical primary</div>
+            <div class="tfi">03 · Both grips — Analogical builds identity</div>
+            <div class="tfi">04 · Both grips — Full circular closure</div>
+          </div>
+          <div class="tier-flow-arrow">→</div>
+          <div>
+            <div class="tier-flow-label">Product Tier</div>
+            <div class="tfi" style="border-color:rgba(232,132,90,0.3);color:#e8845a;">Tier 1 · Wine</div>
+            <div class="tfi" style="border-color:rgba(232,180,90,0.3);color:#e8b45a;">Tier 2 · Blends</div>
+            <div class="tfi" style="border-color:rgba(90,184,168,0.3);color:#5ab8a8;">Tier 3 · New Categories</div>
+            <div class="tfi" style="border-color:rgba(58,122,184,0.3);color:#7ab4e8;">Tier 4 · Max Extraction</div>
+          </div>
+          <div class="tier-flow-arrow">→</div>
+          <div>
+            <div class="tier-flow-label">Communication</div>
+            <div class="tfi">Analytical language + new context</div>
+            <div class="tfi">Wine Geometric System™</div>
+            <div class="tfi">Crossmodal can design</div>
+            <div class="tfi">Analogical narrative — can</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tier-matrix">
+
+      <div class="tier-row t1">
+        <div class="tier-num">1</div>
+        <div class="tier-cell">
+          <div class="tier-cell-label">Product</div>
+          <div class="tier-cell-title">White, Red, Rosé, Sparkling</div>
+          <div class="tier-cell-body">Rescued wine certified as a standalone product. Least processing, closest to origin. Quality preserved, waste eliminated.</div>
+        </div>
+        <div class="tier-cell">
+          <div class="tier-cell-label">DGA Method</div>
+          <div class="tier-cell-title">Both grips — Analytical primary</div>
+          <div class="tier-cell-body">The <strong>analytical grip</strong> maps colour, aroma, structure and finish with precision. The <strong>analogical grip</strong> then asks: <em>what new context does this wine belong to?</em> — identifying optimal placement without blending.</div>
+          <div class="tier-tags"><span class="ttag ttag-dga">DGA Level 1–2</span><span class="ttag ttag-pkg">All formats A–E</span></div>
+        </div>
+        <div class="tier-cell">
+          <div class="tier-cell-label">Communication</div>
+          <div class="tier-cell-title">Analytical language + new context</div>
+          <div class="tier-cell-body">Classical wine descriptors establish credibility. The analogical grip opens the new context — a different occasion, pairing or consumer group. Supported across all five packaging formats. <em>(Lick et al. 2017; Nygren 2004)</em></div>
+        </div>
+      </div>
+
+      <div class="tier-row t2">
+        <div class="tier-num">2</div>
+        <div class="tier-cell">
+          <div class="tier-cell-label">Product</div>
+          <div class="tier-cell-title">Blends of Tier 1</div>
+          <div class="tier-cell-body">Multiple rescued materials combined into a new sensory whole. Blending is a creative act — the DGA determines which combination creates the strongest coherent personality.</div>
+        </div>
+        <div class="tier-cell">
+          <div class="tier-cell-label">DGA Method</div>
+          <div class="tier-cell-title">Both grips — Analogical primary</div>
+          <div class="tier-cell-body">The <strong>analogical grip</strong> drives blending decisions — which combination creates the right gestalt? The <strong>analytical grip</strong> verifies quality and consistency. DCT builds shared language, CAT isolates the critical attribute.</div>
+          <div class="tier-tags"><span class="ttag ttag-dga">DGA Level 2–3</span><span class="ttag ttag-pkg">All formats A–E</span></div>
+        </div>
+        <div class="tier-cell">
+          <div class="tier-cell-label">Communication</div>
+          <div class="tier-cell-title">Wine Geometric System™</div>
+          <div class="tier-cell-body">The blend's attack–mid-palate–finish rhythm visualised as geometric form. Circle, rectangle, triangle communicate personality without chemical descriptors — across all five formats. <em>(Crichton-Fock &amp; Spence 2024)</em></div>
+        </div>
+      </div>
+
+      <div class="tier-row t3">
+        <div class="tier-num">3</div>
+        <div class="tier-cell">
+          <div class="tier-cell-label">Product</div>
+          <div class="tier-cell-title">Premium Spritzers, Wine Coolers, Alcoholic &amp; Non-Alcoholic</div>
+          <div class="tier-cell-body">New product category from rescued material. Entirely new sensory profile — neither traditional wine nor standard RTD. Maximises market reach and volume.</div>
+        </div>
+        <div class="tier-cell">
+          <div class="tier-cell-label">DGA Method</div>
+          <div class="tier-cell-title">Both grips — Analogical builds identity</div>
+          <div class="tier-cell-body">The <strong>analogical grip</strong> creates the product's experiential identity — what is this new category? The <strong>analytical grip</strong> ensures base quality meets the new format's requirements. CAT isolates the decisive attribute for consumer acceptance.</div>
+          <div class="tier-tags"><span class="ttag ttag-dga">DGA Level 3</span><span class="ttag ttag-pkg">Cans only (A)</span></div>
+        </div>
+        <div class="tier-cell">
+          <div class="tier-cell-label">Communication</div>
+          <div class="tier-cell-title">Crossmodal can design</div>
+          <div class="tier-cell-body">Cans exclusively. The can surface is the primary communication canvas. Crossmodal shape, colour and graphic design carry sensory pre-expectation. 54% of consumers ranked visual/shape as #1 preferred alternative communication. <em>(Crichton-Fock et al. 2023; Heatherly et al. 2019)</em></div>
+        </div>
+      </div>
+
+      <div class="tier-row t4">
+        <div class="tier-num">4</div>
+        <div class="tier-cell">
+          <div class="tier-cell-label">Product</div>
+          <div class="tier-cell-title">Pre-mixed Cocktails, Flavourings, Premium Vinegar</div>
+          <div class="tier-cell-body">Maximum resource extraction. Every litre finds its highest-value use. Vinegar and flavourings represent full circular closure — nothing wasted.</div>
+        </div>
+        <div class="tier-cell">
+          <div class="tier-cell-label">DGA Method</div>
+          <div class="tier-cell-title">Both grips — Full circular closure</div>
+          <div class="tier-cell-body">The <strong>analogical grip</strong> builds the product's identity from scratch — no inherited category, only story and sensation. The <strong>analytical grip</strong> confirms the transformation is complete and quality-verified. CAT identifies the single premium attribute: acidity, aroma or complexity.</div>
+          <div class="tier-tags"><span class="ttag ttag-dga">DGA Level 4</span><span class="ttag ttag-pkg">Cans only (A)</span></div>
+        </div>
+        <div class="tier-cell">
+          <div class="tier-cell-label">Communication</div>
+          <div class="tier-cell-title">Analogical narrative — can format</div>
+          <div class="tier-cell-body">The origin story is the product's greatest asset — told through analogy, not chemistry. Scent-evoked memory as emotional anchor. 91% of consumers positive to purchase based on sensory information alone. <em>(Reid et al. 2015; Crichton-Fock et al. 2023)</em></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="section-label" style="color:var(--gold);margin-top:4rem;margin-bottom:1rem;">Packaging Formats</div>
+    <div class="divider"></div>
+    <p style="font-size:0.87rem;color:rgba(255,255,255,0.52);max-width:620px;margin-bottom:0;">Each format carries independent crossmodal signals — weight, shape and material communicate quality and expectation independently of the label. Format selection is part of the sensory communication strategy.</p>
+
+    <div class="pkg-rules">
+      <div class="pkg-rule">
+        <div class="pkg-rule-lbl" style="color:#e8845a;">Tier 1 &amp; 2 — Wine &amp; Blends</div>
+        <div class="pkg-rule-sub">All five formats available</div>
+        <div class="pkg-badges">
+          <span class="pb pb1">A · Cans</span>
+          <span class="pb pb1">B · Bottle 75cl</span>
+          <span class="pb pb1">C · Keykeg</span>
+          <span class="pb pb1">D · Omni-Keg</span>
+          <span class="pb pb1">E · BiB</span>
+        </div>
+      </div>
+      <div class="pkg-rule">
+        <div class="pkg-rule-lbl" style="color:#5ab8a8;">Tier 3 &amp; 4 — New Categories &amp; Max Extraction</div>
+        <div class="pkg-rule-sub">Cans exclusively — the can surface is the crossmodal communication canvas</div>
+        <div class="pkg-badges">
+          <span class="pb pb3">A · Cans 200–440 ml</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pkg-strip">
+      <div class="pkg-card">
+        <div class="pkg-letter">A</div>
+        <div class="pkg-name">Cans</div>
+        <div class="pkg-vol">200 · 250 · 330 · 440 ml</div>
+        <div class="pkg-note">All tiers. Exclusive format for Tier 3–4.</div>
+        <div class="pkg-dots"><span class="pd pd1">1</span><span class="pd pd2">2</span><span class="pd pd3">3</span><span class="pd pd4">4</span></div>
+      </div>
+      <div class="pkg-card">
+        <div class="pkg-letter">B</div>
+        <div class="pkg-name">Bottle</div>
+        <div class="pkg-vol">75 cl · natural cork</div>
+        <div class="pkg-note">Tier 1–2. Premium haptic signals. Cork builds anticipation.</div>
+        <div class="pkg-dots"><span class="pd pd1">1</span><span class="pd pd2">2</span></div>
+      </div>
+      <div class="pkg-card">
+        <div class="pkg-letter">C</div>
+        <div class="pkg-name">Keykeg</div>
+        <div class="pkg-vol">20 – 30 litres</div>
+        <div class="pkg-note">Tier 1–2. HORECA. Strong analogical POS communication required.</div>
+        <div class="pkg-dots"><span class="pd pd1">1</span><span class="pd pd2">2</span></div>
+      </div>
+      <div class="pkg-card">
+        <div class="pkg-letter">D</div>
+        <div class="pkg-name">Omni-Keg</div>
+        <div class="pkg-vol">20 litres</div>
+        <div class="pkg-note">Tier 1–2. Versatile bulk, maximum resource efficiency.</div>
+        <div class="pkg-dots"><span class="pd pd1">1</span><span class="pd pd2">2</span></div>
+      </div>
+      <div class="pkg-card">
+        <div class="pkg-letter">E</div>
+        <div class="pkg-name">BiB</div>
+        <div class="pkg-vol">1.5 · 3 · 10 · 20 L</div>
+        <div class="pkg-note">Tier 1–2. Lowest carbon per litre. Analogical label essential.</div>
+        <div class="pkg-dots"><span class="pd pd1">1</span><span class="pd pd2">2</span></div>
+      </div>
+    </div>
+
+    <div class="tier-refs">
+      <div><div class="tier-ref-lbl">Sensory foundation</div><div class="tier-ref-txt">Crichton-Fock &amp; Spence 2024 · Herdenstam et al. 2009 · Nygren 2004 · Zucco et al. 2011</div></div>
+      <div><div class="tier-ref-lbl">Crossmodal &amp; packaging</div><div class="tier-ref-txt">Wang &amp; Spence 2018 · Velasco et al. 2015 · Piqueras-Fiszman &amp; Spence 2012 · Heatherly et al. 2019 · Lick et al. 2017</div></div>
+      <div><div class="tier-ref-lbl">Sustainability &amp; resource use</div><div class="tier-ref-txt">Zhao et al. 2022 · Willett et al. 2019 · Christ &amp; Burritt 2013 · Crichton-Fock et al. 2023</div></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══ CURATION EXAMPLES ════════════════════════════════════════ -->
+<section id="curation">
+  <div class="container">
+
+    <div class="section-label">The Full Experience</div>
+    <div class="divider"></div>
+    <h2 class="section-title">Curated Pairings<br>by Tier</h2>
+    <p class="section-intro">Every product in the upcycling spectrum has an optimal sensory context — glass, temperature, music, light, food. These are not suggestions. They are scientifically grounded design decisions, each one traceable to crossmodal research. Sixteen examples across all four tiers, including remixed drinks, cocktails and culinary extractions.</p>
+
+    
+    <div class="cur-tier-header">
+      <div class="cur-dot" style="background:#e8845a"></div>
+      <span class="cur-tier-title">Tier 1 — Rescued wines, new context</span>
+      <span class="cur-tier-sub">Analytical primary · all formats</span>
+    </div>
+    <div class="cur-grid">
+    
+      <div class="cur-card">
+        <div class="cur-accent" style="background:#e8845a"></div>
+        <div class="cur-body">
+          <div class="cur-badge" style="background:#fdf0eb;color:#a04020">Riesling · off-vintage</div>
+          <div class="cur-name">Petrol &amp; Lime</div>
+          <div class="cur-sub">Hög syra, petroleumdoft — ny kontext: apéritif</div>
+          <div class="cur-rl">Glas &amp; temp</div><div class="cur-pills"><span class="cur-pill">Smal Rieslingflöjt</span><span class="cur-pill">7–9 °C</span><span class="cur-pill">Tunt lätt glas</span></div><div class="cur-rl">Musik</div><div class="cur-pills"><span class="cur-pill">Minimal elektronika</span><span class="cur-pill">Höga klara toner</span><span class="cur-pill">90 BPM</span></div><div class="cur-rl">Ljus &amp; miljö</div><div class="cur-pills"><span class="cur-pill">Kallt vitt ljus</span><span class="cur-pill">Kök · förmiddag</span></div><div class="cur-rl">Mat</div><div class="cur-pills"><span class="cur-pill">Gravlax</span><span class="cur-pill">Sushi</span><span class="cur-pill">Citrusmarinerat</span></div>
+          <div class="cur-analogy">"Kall morgondimma vid Mosel — mineral, citrusskal, bensin i fjärran"</div>
+        </div>
+        <div class="cur-sci">
+          <div class="cur-sci-lbl">Varför det fungerar</div>
+          <div class="cur-sci-txt">Höga toner kongruerar med syra och förstärker mineraliteten. Kall temp dämpar petrolkaraktären märkbart. Sushi + låg tannin = umami-fällan undvikd. <strong>(Koone 2014; Spence &amp; Wang 2015)</strong></div>
+        </div>
+      </div>
+      <div class="cur-card">
+        <div class="cur-accent" style="background:#e8845a"></div>
+        <div class="cur-body">
+          <div class="cur-badge" style="background:#fdf0eb;color:#a04020">Pinot Noir · övermogen</div>
+          <div class="cur-name">Höst i Glas</div>
+          <div class="cur-sub">Mjuka tanniner, mogna körsbär — ny kontext: bistrovin</div>
+          <div class="cur-rl">Glas &amp; temp</div><div class="cur-pills"><span class="cur-pill">Bred Bourgognekupa</span><span class="cur-pill">14–16 °C</span></div><div class="cur-rl">Musik</div><div class="cur-pills"><span class="cur-pill">Fransk café-jazz</span><span class="cur-pill">Akustisk</span><span class="cur-pill">75 BPM</span></div><div class="cur-rl">Ljus &amp; miljö</div><div class="cur-pills"><span class="cur-pill">Varmt amber ljus</span><span class="cur-pill">Bistromiljö · kväll</span></div><div class="cur-rl">Mat</div><div class="cur-pills"><span class="cur-pill">Confit de canard</span><span class="cur-pill">Svamp</span><span class="cur-pill">Brie</span></div>
+          <div class="cur-analogy">"En regnig tisdag i en liten bistro på Rue de Bretagne — rökt trä, mogna körsbär, kafé"</div>
+        </div>
+        <div class="cur-sci">
+          <div class="cur-sci-lbl">Varför det fungerar</div>
+          <div class="cur-sci-txt">Amber belysning förstärker röda frukttoner. Jazz-tempo matchar vinets mjuka tidsrymd. Fett + tannin = klassisk texturbalans. <strong>(Harrington 2008; Spence et al. 2014)</strong></div>
+        </div>
+      </div>
+      <div class="cur-card">
+        <div class="cur-accent" style="background:#e8845a"></div>
+        <div class="cur-body">
+          <div class="cur-badge" style="background:#fdf0eb;color:#a04020">Chenin Blanc · surplus</div>
+          <div class="cur-name">Honungssten</div>
+          <div class="cur-sub">Hög syra, honungstoner — ny kontext: ostbord</div>
+          <div class="cur-rl">Glas &amp; temp</div><div class="cur-pills"><span class="cur-pill">Vidöppet vitvinsglas</span><span class="cur-pill">10–12 °C</span><span class="cur-pill">Medeltungt</span></div><div class="cur-rl">Musik</div><div class="cur-pills"><span class="cur-pill">Klassisk gitarr</span><span class="cur-pill">Medeltoner</span><span class="cur-pill">60 BPM</span></div><div class="cur-rl">Ljus &amp; miljö</div><div class="cur-pills"><span class="cur-pill">Naturligt ljus · eftermiddag</span><span class="cur-pill">Trädgård</span></div><div class="cur-rl">Mat</div><div class="cur-pills"><span class="cur-pill">Comté 24 mån</span><span class="cur-pill">Honungsmelon</span><span class="cur-pill">Valnötter</span></div>
+          <div class="cur-analogy">"Stenmur i Loire på en varm sensommarsöndag — bivax, kalksten, vit blomma"</div>
+        </div>
+        <div class="cur-sci">
+          <div class="cur-sci-lbl">Varför det fungerar</div>
+          <div class="cur-sci-txt">Naturligt ljus aktiverar honungstonerna. Ostprotein + syra = texturbalans. Salt i ost dämpar eventuell bitterhet — regel 3. <strong>(Keast &amp; Breslin 2003)</strong></div>
+        </div>
+      </div>
+      <div class="cur-card">
+        <div class="cur-accent" style="background:#e8845a"></div>
+        <div class="cur-body">
+          <div class="cur-badge" style="background:#fdf0eb;color:#a04020">Garnacha · överlager</div>
+          <div class="cur-name">Solbränd Terrakotta</div>
+          <div class="cur-sub">Mogen frukt, lätt oxidativ — ny kontext: tapas &amp; sherry-register</div>
+          <div class="cur-rl">Glas &amp; temp</div><div class="cur-pills"><span class="cur-pill">Sherryglas / copita</span><span class="cur-pill">16 °C</span></div><div class="cur-rl">Musik</div><div class="cur-pills"><span class="cur-pill">Flamenco-gitarr</span><span class="cur-pill">Perkussion</span><span class="cur-pill">Varma toner</span></div><div class="cur-rl">Ljus &amp; miljö</div><div class="cur-pills"><span class="cur-pill">Terrakottatoner · kväll</span><span class="cur-pill">Tapasbar</span></div><div class="cur-rl">Mat</div><div class="cur-pills"><span class="cur-pill">Jamón ibérico</span><span class="cur-pill">Manchego</span><span class="cur-pill">Paprika-chorizo</span></div>
+          <div class="cur-analogy">"Eftermiddagssolen mot vita murar i Granada — mogen fikon, damm, krydda"</div>
+        </div>
+        <div class="cur-sci">
+          <div class="cur-sci-lbl">Varför det fungerar</div>
+          <div class="cur-sci-txt">Sherryglas koncentrerar oxidativa nötaromer. Flamenco = kongruent med varm kryddad karaktär. Salt i jamon + tannin = mjukning. <strong>(Spence et al. 2014; Gallace &amp; Spence 2010)</strong></div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="cur-tier-header">
+      <div class="cur-dot" style="background:#e8b45a"></div>
+      <span class="cur-tier-title">Tier 2 — Analogue blends</span>
+      <span class="cur-tier-sub">Analogical primary · all formats</span>
+    </div>
+    <div class="cur-grid">
+    
+      <div class="cur-card">
+        <div class="cur-accent" style="background:#e8b45a"></div>
+        <div class="cur-body">
+          <div class="cur-badge" style="background:#fdf5e6;color:#8a5a10">Rosé blend · Lo-Fi</div>
+          <div class="cur-name">Lo-Fi Rosé</div>
+          <div class="cur-sub">Övermogen rosé · ny gestalt via blend</div>
+          <div class="cur-rl">Glas &amp; temp</div><div class="cur-pills"><span class="cur-pill">Bred vitvinskupa</span><span class="cur-pill">12–14 °C</span></div><div class="cur-rl">Musik</div><div class="cur-pills"><span class="cur-pill">Lo-fi hip-hop</span><span class="cur-pill">75 BPM</span><span class="cur-pill">Mellantoner</span></div><div class="cur-rl">Ljus &amp; miljö</div><div class="cur-pills"><span class="cur-pill">Dämpat varmt ljus</span><span class="cur-pill">Inomhus · soffa</span></div><div class="cur-rl">Mat</div><div class="cur-pills"><span class="cur-pill">Charkuteri</span><span class="cur-pill">Mogna ostar</span><span class="cur-pill">Rostade nötter</span></div>
+          <div class="cur-analogy">"Plocka bär en mulen augustikväll — mogen frukt, varm jord, ett stänk av rök"</div>
+        </div>
+        <div class="cur-sci">
+          <div class="cur-sci-lbl">Varför det fungerar</div>
+          <div class="cur-sci-txt">Lo-fi = kongruent med mogen komplex karaktär. Dämpad belysning sänker smaktröskeln för subtila aromer. Fett + syra = balans. <strong>(Harrington 2008; Spence &amp; Wang 2015)</strong></div>
+        </div>
+      </div>
+      <div class="cur-card">
+        <div class="cur-accent" style="background:#e8b45a"></div>
+        <div class="cur-body">
+          <div class="cur-badge" style="background:#fdf5e6;color:#8a5a10">Vitt blend · komplex</div>
+          <div class="cur-name">The Architect</div>
+          <div class="cur-sub">Syra + mineralitet + mognad i en blend</div>
+          <div class="cur-rl">Glas &amp; temp</div><div class="cur-pills"><span class="cur-pill">Smalt vitvinsglas</span><span class="cur-pill">9–11 °C</span><span class="cur-pill">Kristall</span></div><div class="cur-rl">Musik</div><div class="cur-pills"><span class="cur-pill">Minimalistisk piano</span><span class="cur-pill">Satie / Glass</span><span class="cur-pill">Klara diskanter</span></div><div class="cur-rl">Ljus &amp; miljö</div><div class="cur-pills"><span class="cur-pill">Neutralt vitt ljus</span><span class="cur-pill">Rent bordsformat</span></div><div class="cur-rl">Mat</div><div class="cur-pills"><span class="cur-pill">Vitfisk · citronsmör</span><span class="cur-pill">Sparris</span><span class="cur-pill">Getost</span></div>
+          <div class="cur-analogy">"Betongarkitektur i tidig morgon — skarp linje, kallt ljus, en blomma i sprickan"</div>
+        </div>
+        <div class="cur-sci">
+          <div class="cur-sci-lbl">Varför det fungerar</div>
+          <div class="cur-sci-txt">Piano-diskanter förstärker mineralitet och syra. Neutralt ljus låter vinets färg kommunicera fritt. Citronsmör + syra = ömsesidig förstärkning. <strong>(Spence &amp; Wang 2015 I)</strong></div>
+        </div>
+      </div>
+      <div class="cur-card">
+        <div class="cur-accent" style="background:#e8b45a"></div>
+        <div class="cur-body">
+          <div class="cur-badge" style="background:#fdf5e6;color:#8a5a10">Rött blend · djupt</div>
+          <div class="cur-name">The Serious One</div>
+          <div class="cur-sub">Strukturerat blend — högt tannin, mörk frukt</div>
+          <div class="cur-rl">Glas &amp; temp</div><div class="cur-pills"><span class="cur-pill">Bred Bordeauxkupa</span><span class="cur-pill">17–18 °C</span><span class="cur-pill">Tungkristall</span></div><div class="cur-rl">Musik</div><div class="cur-pills"><span class="cur-pill">Stråkkvartett</span><span class="cur-pill">Cello dominant</span><span class="cur-pill">55–65 BPM</span></div><div class="cur-rl">Ljus &amp; miljö</div><div class="cur-pills"><span class="cur-pill">Stearinljus</span><span class="cur-pill">Middag · formellt</span></div><div class="cur-rl">Mat</div><div class="cur-pills"><span class="cur-pill">Entrecôte</span><span class="cur-pill">Svamp-jus</span><span class="cur-pill">Rotfrukter</span></div>
+          <div class="cur-analogy">"Ett gammalt bibliotek vid midnatt — läder, mörkt trä, bläck och damm"</div>
+        </div>
+        <div class="cur-sci">
+          <div class="cur-sci-lbl">Varför det fungerar</div>
+          <div class="cur-sci-txt">Cellons bastoner förstärker fyllighet och tanninrundhet. Kött + tannin = proteiner binder tanniner → mjukning. Stearinljus skapar fokus på smak. <strong>(Wang &amp; Spence 2018)</strong></div>
+        </div>
+      </div>
+      <div class="cur-card">
+        <div class="cur-accent" style="background:#e8b45a"></div>
+        <div class="cur-body">
+          <div class="cur-badge" style="background:#fdf5e6;color:#8a5a10">Orange wine blend</div>
+          <div class="cur-name">Skin Contact No. 3</div>
+          <div class="cur-sub">Tannin + oxidation + exotisk frukt — ny publik</div>
+          <div class="cur-rl">Glas &amp; temp</div><div class="cur-pills"><span class="cur-pill">Universalglas · vidöppet</span><span class="cur-pill">13–15 °C</span></div><div class="cur-rl">Musik</div><div class="cur-pills"><span class="cur-pill">World music</span><span class="cur-pill">Oud / sitar</span><span class="cur-pill">Varma mellantoner</span></div><div class="cur-rl">Ljus &amp; miljö</div><div class="cur-pills"><span class="cur-pill">Terrakottatoner</span><span class="cur-pill">Naturmaterial · keramik</span></div><div class="cur-rl">Mat</div><div class="cur-pills"><span class="cur-pill">Mezze</span><span class="cur-pill">Hummus · halloumi</span><span class="cur-pill">Granatäpple</span></div>
+          <div class="cur-analogy">"En basar i Tbilisi vid solnedgången — aprikosskinn, vax, kryddor och gammalt lergods"</div>
+        </div>
+        <div class="cur-sci">
+          <div class="cur-sci-lbl">Varför det fungerar</div>
+          <div class="cur-sci-txt">World music + terrakotta = kongruent sensorisk omgivning. Salt i halloumi dämpar tannintorrhet. Keramik ger haptic signal om hantverk. <strong>(Gallace &amp; Spence 2010)</strong></div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="cur-tier-header">
+      <div class="cur-dot" style="background:#5ab8a8"></div>
+      <span class="cur-tier-title">Tier 3 — New categories: spritzers &amp; coolers</span>
+      <span class="cur-tier-sub">Crossmodal design · cans</span>
+    </div>
+    <div class="cur-grid">
+    
+      <div class="cur-card">
+        <div class="cur-accent" style="background:#5ab8a8"></div>
+        <div class="cur-body">
+          <div class="cur-badge" style="background:#e4f5f1;color:#0a6e5a">Spritzer · citrus</div>
+          <div class="cur-name">Rewind Sparkling</div>
+          <div class="cur-sub">Räddad vit + kolsyra + citrus — gastronomisk spritzer</div>
+          <div class="cur-rl">Format &amp; temp</div><div class="cur-pills"><span class="cur-pill">Highball · klart glas</span><span class="cur-pill">4–6 °C</span><span class="cur-pill">Inga isbitar</span></div><div class="cur-rl">Musik</div><div class="cur-pills"><span class="cur-pill">Bossa nova / afrobeat</span><span class="cur-pill">120–130 BPM</span><span class="cur-pill">Höga toner</span></div><div class="cur-rl">Ljus &amp; miljö</div><div class="cur-pills"><span class="cur-pill">Klart dagsljus</span><span class="cur-pill">Sommarterrass</span></div><div class="cur-rl">Mat</div><div class="cur-pills"><span class="cur-pill">Skaldjur</span><span class="cur-pill">Fetaost &amp; vattenmelon</span></div>
+          <div class="cur-analogy">"Sommarregn i Lissabon — sol bakom molnen, citrus och havssalt i luften"</div>
+        </div>
+        <div class="cur-sci">
+          <div class="cur-sci-lbl">Varför det fungerar</div>
+          <div class="cur-sci-txt">Höga toner förstärker syra och kolsyreskärpa. Klart ljus aktiverar frukttoner. Kongruent musik = <strong>+15% njutning</strong> vs. okongruent. <strong>(Spence et al. 2014)</strong></div>
+        </div>
+      </div>
+      <div class="cur-card">
+        <div class="cur-accent" style="background:#5ab8a8"></div>
+        <div class="cur-body">
+          <div class="cur-badge" style="background:#e4f5f1;color:#0a6e5a">Wine cooler · bär</div>
+          <div class="cur-name">Berry Frequency</div>
+          <div class="cur-sub">Räddad rosé + bärjuice + mild kolsyra</div>
+          <div class="cur-rl">Format &amp; temp</div><div class="cur-pills"><span class="cur-pill">Burk · frostat glas</span><span class="cur-pill">2–4 °C</span><span class="cur-pill">Is ok</span></div><div class="cur-rl">Musik</div><div class="cur-pills"><span class="cur-pill">Indie pop</span><span class="cur-pill">Gitarr-driven</span><span class="cur-pill">100–110 BPM</span></div><div class="cur-rl">Ljus &amp; miljö</div><div class="cur-pills"><span class="cur-pill">Rosa-lila toner</span><span class="cur-pill">Festivalmiljö</span></div><div class="cur-rl">Mat</div><div class="cur-pills"><span class="cur-pill">Jordgubbstårta</span><span class="cur-pill">Lätt picknick</span></div>
+          <div class="cur-analogy">"En festival i sensommarkvällen — neonskylt, bärsorbet, gräs och skratt"</div>
+        </div>
+        <div class="cur-sci">
+          <div class="cur-sci-lbl">Varför det fungerar</div>
+          <div class="cur-sci-txt">Rosa miljö förstärker sötma-perception. Gitarr-mellantoner matchar bärighetens mittregister. Vid låg tannin: söt mat + sötma = kongruens, inte konkurrens. <strong>(Keast &amp; Breslin 2003)</strong></div>
+        </div>
+      </div>
+      <div class="cur-card">
+        <div class="cur-accent" style="background:#5ab8a8"></div>
+        <div class="cur-body">
+          <div class="cur-badge" style="background:#e4f5f1;color:#0a6e5a">Non-alc · botanisk</div>
+          <div class="cur-name">Zero Garden</div>
+          <div class="cur-sub">Avalkoholiserat räddatvin + botaniska extrakt</div>
+          <div class="cur-rl">Format &amp; temp</div><div class="cur-pills"><span class="cur-pill">Wineglass-shape burk</span><span class="cur-pill">8 °C</span><span class="cur-pill">Citrusslice garnish</span></div><div class="cur-rl">Musik</div><div class="cur-pills"><span class="cur-pill">Ambient nature</span><span class="cur-pill">Fågelljud · vind i löv</span></div><div class="cur-rl">Ljus &amp; miljö</div><div class="cur-pills"><span class="cur-pill">Gröna toner</span><span class="cur-pill">Trädgård · spa</span></div><div class="cur-rl">Mat</div><div class="cur-pills"><span class="cur-pill">Gurka-yoghurträtt</span><span class="cur-pill">Gröna örter</span></div>
+          <div class="cur-analogy">"Morgendagg på örter — persika, rosmarin, bergamott, klart vatten"</div>
+        </div>
+        <div class="cur-sci">
+          <div class="cur-sci-lbl">Varför det fungerar</div>
+          <div class="cur-sci-txt">Naturljud + grön miljö = botanisk kongruens. Citrusdoft i garnish triggar förväntning. Crossmodal kongruens förstärker upplevd komplexitet trots frånvaro av alkohol. <strong>(Winkielman et al. 2015)</strong></div>
+        </div>
+      </div>
+      <div class="cur-card">
+        <div class="cur-accent" style="background:#5ab8a8"></div>
+        <div class="cur-body">
+          <div class="cur-badge" style="background:#e4f5f1;color:#0a6e5a">Sparkling · mörk frukt</div>
+          <div class="cur-name">Dark Signal</div>
+          <div class="cur-sub">Räddad Syrah-bas + kolsyra + cassis</div>
+          <div class="cur-rl">Format &amp; temp</div><div class="cur-pills"><span class="cur-pill">Svart burk</span><span class="cur-pill">4–6 °C</span><span class="cur-pill">Highball med is</span></div><div class="cur-rl">Musik</div><div class="cur-pills"><span class="cur-pill">Dark electronica</span><span class="cur-pill">Subbase</span><span class="cur-pill">95 BPM</span></div><div class="cur-rl">Ljus &amp; miljö</div><div class="cur-pills"><span class="cur-pill">Dämpad neonbelysning</span><span class="cur-pill">Urban natt</span></div><div class="cur-rl">Mat</div><div class="cur-pills"><span class="cur-pill">Smashburger</span><span class="cur-pill">Pulled pork</span><span class="cur-pill">BBQ</span></div>
+          <div class="cur-analogy">"En underjordisk klubb på lördag — rök, violett ljus, puls och mörka körsbär"</div>
+        </div>
+        <div class="cur-sci">
+          <div class="cur-sci-lbl">Varför det fungerar</div>
+          <div class="cur-sci-txt">Subbase förstärker fyllighet och mörkfruktighet. Neonljus förstärker intensitetsperception. Kött + cassis-syra = fett möter syra-balans. <strong>(Spence &amp; Wang 2015 III)</strong></div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="cur-tier-header">
+      <div class="cur-dot" style="background:#7ab4e8"></div>
+      <span class="cur-tier-title">Tier 4 — Max extraction: cocktails, drinks &amp; culinary</span>
+      <span class="cur-tier-sub">Analogical narrative · taste transfer · cans</span>
+    </div>
+    <div class="cur-grid">
+    
+      <div class="cur-card">
+        <div class="cur-accent" style="background:#7ab4e8"></div>
+        <div class="cur-body">
+          <div class="cur-badge" style="background:#e8f1fc;color:#185090">Cocktail · säsongsbar</div>
+          <div class="cur-name">The Rescued Negroni</div>
+          <div class="cur-sub">Barolo-bas + bitter liqueur + vermouth · tanninstruktur överförd</div>
+          <div class="cur-rl">Format &amp; temp</div><div class="cur-pills"><span class="cur-pill">Old-fashioned glas</span><span class="cur-pill">En stor iskub</span><span class="cur-pill">Apelsinskal</span></div><div class="cur-rl">Kropp &amp; grundsmaker</div><div class="cur-pills"><span class="cur-pill strong">Tannin → struktur</span><span class="cur-pill strong">Bitterhet balanseras</span><span class="cur-pill strong">Umami från vin</span></div><div class="cur-rl">Musik</div><div class="cur-pills"><span class="cur-pill">Italian jazz · 60s</span><span class="cur-pill">Saxofon</span><span class="cur-pill">65 BPM</span></div><div class="cur-rl">Ljus &amp; miljö</div><div class="cur-pills"><span class="cur-pill">Amber barljus</span><span class="cur-pill">Aperitivo · högt bord</span></div><div class="cur-rl">Mat</div><div class="cur-pills"><span class="cur-pill">Salumi</span><span class="cur-pill">Olivolja-chips</span><span class="cur-pill">Ingen söt mat</span></div>
+          <div class="cur-analogy">"Milano vid sex på kvällen — aperol-klocktorn, marmor, tobak och apelsinblom"</div>
+        </div>
+        <div class="cur-sci">
+          <div class="cur-sci-lbl">Grundsmaksöverföring</div>
+          <div class="cur-sci-txt">Barolo-tanninerna ger struktur gin saknar — drycken håller längre på gommen. Umami i vinet interagerar med bitter liqueur och skapar ny dimension. Salt i salumi dämpar bitterhet → balans. <strong>(Kim et al. 2015; Keast &amp; Breslin 2003)</strong></div>
+        </div>
+      </div>
+      <div class="cur-card">
+        <div class="cur-accent" style="background:#7ab4e8"></div>
+        <div class="cur-body">
+          <div class="cur-badge" style="background:#e8f1fc;color:#185090">Remixed drink · syrlig</div>
+          <div class="cur-name">Acid Trip Sour</div>
+          <div class="cur-sub">Räddad Riesling-syra + äggvita + honung · syrastruktur som design</div>
+          <div class="cur-rl">Format &amp; temp</div><div class="cur-pills"><span class="cur-pill">Coupette-glas</span><span class="cur-pill">Ingen is efter shaking</span><span class="cur-pill">Citronzest</span></div><div class="cur-rl">Kropp &amp; grundsmaker</div><div class="cur-pills"><span class="cur-pill strong">Hög syra → ryggrad</span><span class="cur-pill strong">Sötma balanserar</span><span class="cur-pill strong">Äggvita mjukar kropp</span></div><div class="cur-rl">Musik</div><div class="cur-pills"><span class="cur-pill">Acid jazz · diskant</span><span class="cur-pill">Hög frekvensbas</span><span class="cur-pill">105 BPM</span></div><div class="cur-rl">Ljus &amp; miljö</div><div class="cur-pills"><span class="cur-pill">Klart vitt ljus</span><span class="cur-pill">Bartop · kväll</span></div><div class="cur-rl">Mat</div><div class="cur-pills"><span class="cur-pill">Citrus-ceviche</span><span class="cur-pill">Labneh</span></div>
+          <div class="cur-analogy">"Elektrisk morgon efter nattsommar — citron, fokus, skum och klart ljus"</div>
+        </div>
+        <div class="cur-sci">
+          <div class="cur-sci-lbl">Grundsmaksöverföring</div>
+          <div class="cur-sci-txt">Rieslings naturliga syra ersätter citronsaft — ger mineralisk komplexitet och terroir-djup i sour-strukturen. Höga toner i acid jazz förstärker upplevd syrakänsla ytterligare. <strong>(Spence &amp; Wang 2015 I)</strong></div>
+        </div>
+      </div>
+      <div class="cur-card">
+        <div class="cur-accent" style="background:#7ab4e8"></div>
+        <div class="cur-body">
+          <div class="cur-badge" style="background:#e8f1fc;color:#185090">Premium vinäger · kök</div>
+          <div class="cur-name">Aged Reduction</div>
+          <div class="cur-sub">Barolo-bas vinäger · tannin + syra + umami i koncentrat</div>
+          <div class="cur-rl">Format &amp; kontext</div><div class="cur-pills"><span class="cur-pill">Tung keramikskål</span><span class="cur-pill">Sked · ej flaska</span><span class="cur-pill">Gastronomiskt kök</span></div><div class="cur-rl">Kropp &amp; grundsmaker</div><div class="cur-pills"><span class="cur-pill strong">Tannin → astringens i finish</span><span class="cur-pill strong">Syra → djup</span><span class="cur-pill strong">Umami → savouriness</span></div><div class="cur-rl">Musik</div><div class="cur-pills"><span class="cur-pill">Tyst kök</span><span class="cur-pill">Lågmäld klassisk</span></div><div class="cur-rl">Användning</div><div class="cur-pills"><span class="cur-pill">Reducering på varmrätt</span><span class="cur-pill">Dressing</span><span class="cur-pill">Balsamisk finish</span></div>
+          <div class="cur-analogy">"Det som återstår när ett vin levt hela sitt liv — koncentrat av historia, djup och tid"</div>
+        </div>
+        <div class="cur-sci">
+          <div class="cur-sci-lbl">Grundsmaksöverföring</div>
+          <div class="cur-sci-txt">Tanninerna från Barolo ger vinägern en struktur och lätt astringens som balsamico saknar. Umami-djupet förstärks vid reduktion. Tung keramik = haptic premium-signal. <strong>(Piqueras-Fiszman &amp; Spence 2012)</strong></div>
+        </div>
+      </div>
+      <div class="cur-card">
+        <div class="cur-accent" style="background:#7ab4e8"></div>
+        <div class="cur-body">
+          <div class="cur-badge" style="background:#e8f1fc;color:#185090">Remixed · smakstruktur</div>
+          <div class="cur-name">The Sommelier's Spritz</div>
+          <div class="cur-sub">Räddad Chenin + Aperol + soda · DGA-kalibrerad sötma-syra-bitterhet</div>
+          <div class="cur-rl">Format &amp; temp</div><div class="cur-pills"><span class="cur-pill">Högt wineglass</span><span class="cur-pill">Is + apelsinklyfta</span><span class="cur-pill">3–5 °C</span></div><div class="cur-rl">Kropp &amp; grundsmaker</div><div class="cur-pills"><span class="cur-pill strong">Honungssötma kalibrerad</span><span class="cur-pill strong">Syra som ryggrad</span><span class="cur-pill strong">Aperol-bitterhet doserad</span></div><div class="cur-rl">Musik</div><div class="cur-pills"><span class="cur-pill">Sprightly strings</span><span class="cur-pill">Ljus kvintett</span><span class="cur-pill">90 BPM</span></div><div class="cur-rl">Ljus &amp; miljö</div><div class="cur-pills"><span class="cur-pill">Gyllene eftermiddagsljus</span><span class="cur-pill">Piazza · aperitivo-tid</span></div><div class="cur-rl">Mat</div><div class="cur-pills"><span class="cur-pill">Mandlar · salt</span><span class="cur-pill">Grissini</span><span class="cur-pill">Ingen söt mat</span></div>
+          <div class="cur-analogy">"5 i 6 på en piazza i Venedig — sol som sjunker, orange ljus, salt luft och förväntning"</div>
+        </div>
+        <div class="cur-sci">
+          <div class="cur-sci-lbl">Grundsmaksöverföring</div>
+          <div class="cur-sci-txt">DGA identifierade Chenins honungsstruktur som komplementär till Aperols bitterhet. Salt i mandlar triggar regel 3: salt dämpar bitterhet → balans ökar. Ljusa stråkar = kongruent med friskhet. <strong>(Keast &amp; Breslin 2003; Spence et al. 2014)</strong></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ CERTIFIER WALL ══════════════════════════════════════════════ -->
+<section id="cert-wall">
+  <div class="container">
+    <div class="section-label" style="color:var(--gold)">The Certification Community</div>
+    <div class="divider"></div>
+    <h2 class="section-title light">The Certifier Wall</h2>
+    <p class="section-intro light" style="color:rgba(255,255,255,0.65);">Double Grip certification belongs to no one name — it is a capacity. To pendulate between the analytical and the analogical. To capture wholeness, the wine's rhythm and dynamics, from meeting to farewell. The seal remains — only the name changes.</p>
+    <div class="cwall-grid">
+<div class="cwall-card"><img class="cwall-seal" src="assets/cert-official.png" alt="CRICHTON-FOCK"><div class="cwall-name">CRICHTON-FOCK</div><div class="cwall-role">Founder · Örebro University</div><div class="cwall-desc">Creator of the Double Grip. Doctoral thesis KTH 2011. Pendulating since 2003 between science and art.</div></div>
+<div class="cwall-card"><img class="cwall-seal" src="assets/cert-official.png" alt="DUPONT"><div class="cwall-name">DUPONT</div><div class="cwall-role">Inquiry · France</div><div class="cwall-desc">Sensory methodology applied to natural wine production in the Loire Valley. DGA-certified evaluator.</div></div>
+<div class="cwall-card"><img class="cwall-seal" src="assets/cert-official.png" alt="LEFEBVRE"><div class="cwall-name">LEFEBVRE</div><div class="cwall-role">Inquiry · France</div><div class="cwall-desc">Crossmodal communication research applied to Burgundy terroir expression and consumer dialogue.</div></div>
+<div class="cwall-card"><img class="cwall-seal" src="assets/cert-official.png" alt="MARTÍNEZ"><div class="cwall-name">MARTÍNEZ</div><div class="cwall-role">Inquiry · Spain</div><div class="cwall-desc">Double Grip applied to Rioja and Priorat — bridging analytical precision with analogical storytelling.</div></div>
+<div class="cwall-card"><img class="cwall-seal" src="assets/cert-official.png" alt="SÁNCHEZ"><div class="cwall-name">SÁNCHEZ</div><div class="cwall-role">Inquiry · Spain</div><div class="cwall-desc">Sensory evaluation and upcycling potential in Cava and oxidative wine styles. Basque Culinary Center.</div></div>
+<div class="cwall-card"><img class="cwall-seal" src="assets/cert-official.png" alt="FERREIRA"><div class="cwall-name">FERREIRA</div><div class="cwall-role">Inquiry · Portugal</div><div class="cwall-desc">DGA methodology applied to Port wine upcycling and the communication of oxidative complexity.</div></div>
+<div class="cwall-card"><img class="cwall-seal" src="assets/cert-official.png" alt="RODRIGUES"><div class="cwall-name">RODRIGUES</div><div class="cwall-role">Inquiry · Portugal</div><div class="cwall-desc">Analogical training for sommeliers in Douro and Alentejo. Dialogue seminar methodology.</div></div>
+<div class="cwall-card"><img class="cwall-seal" src="assets/cert-official.png" alt="WHITMORE"><div class="cwall-name">WHITMORE</div><div class="cwall-role">Inquiry · USA</div><div class="cwall-desc">DGA applied to natural and skin-contact wine evaluation in California. Critical attribute profiling.</div></div>
+<div class="cwall-card"><img class="cwall-seal" src="assets/cert-official.png" alt="CASTELLANO"><div class="cwall-name">CASTELLANO</div><div class="cwall-role">Inquiry · USA</div><div class="cwall-desc">Crossmodal communication for American wine consumers. Research at Washington State University.</div></div>
+<div class="cwall-card"><img class="cwall-seal" src="assets/cert-official.png" alt="BRENNAN"><div class="cwall-name">BRENNAN</div><div class="cwall-role">Inquiry · USA</div><div class="cwall-desc">Double Grip applied to American craft spirits and heritage grain fermentation in the Pacific Northwest.</div></div>
+<div class="cwall-card"><img class="cwall-seal" src="assets/cert-official.png" alt="O'SULLIVAN"><div class="cwall-name">O'SULLIVAN</div><div class="cwall-role">Inquiry · Ireland</div><div class="cwall-desc">DGA applied to Irish whiskey and the communication of cask maturation complexity through analogical dialogue.</div></div>
+<div class="cwall-card"><img class="cwall-seal" src="assets/cert-official.png" alt="MCNAMARA"><div class="cwall-name">MCNAMARA</div><div class="cwall-role">Inquiry · Ireland</div><div class="cwall-desc">Sensory certification for Irish craft producers. Analogical training bridging distillation science and storytelling.</div></div>
+<div class="cwall-card"><img class="cwall-seal" src="assets/cert-official.png" alt="MÄKINEN"><div class="cwall-name">MÄKINEN</div><div class="cwall-role">Inquiry · Finland</div><div class="cwall-desc">Applying the Double Grip to Nordic fermented beverages and the communication of indigenous terroir.</div></div>
+<div class="cwall-card"><img class="cwall-seal" src="assets/cert-official.png" alt="VIRTANEN"><div class="cwall-name">VIRTANEN</div><div class="cwall-role">Inquiry · Finland</div><div class="cwall-desc">Upcycling potential in Finnish craft spirits and berry wine. Analogical evaluation methodology.</div></div>
+<div class="cwall-card"><img class="cwall-seal" src="assets/cert-official.png" alt="CHRISTENSEN"><div class="cwall-name">CHRISTENSEN</div><div class="cwall-role">Inquiry · Denmark</div><div class="cwall-desc">DGA applied to natural Danish wine and the communication of low-intervention production methods.</div></div>
+<div class="cwall-card"><img class="cwall-seal" src="assets/cert-official.png" alt="LUND"><div class="cwall-name">LUND</div><div class="cwall-role">Inquiry · Denmark</div><div class="cwall-desc">Crossmodal sensory communication in New Nordic gastronomy. Certified dialogue seminar facilitator.</div></div>
+<div class="cwall-card"><img class="cwall-seal" src="assets/cert-official.png" alt="VÁSQUEZ"><div class="cwall-name">VÁSQUEZ</div><div class="cwall-role">Inquiry · Chile</div><div class="cwall-desc">Double Grip applied to Carménère and Pais upcycling — analogical terroir communication for export markets.</div></div>
+<div class="cwall-card"><img class="cwall-seal" src="assets/cert-official.png" alt="OLIVEIRA"><div class="cwall-name">OLIVEIRA</div><div class="cwall-role">Inquiry · Brazil</div><div class="cwall-desc">DGA methodology in Brazilian natural wine and cachaça. Dialogue seminar tradition in sensory education.</div></div>
+<div class="cwall-card"><img class="cwall-seal" src="assets/cert-official.png" alt="GUTIÉRREZ"><div class="cwall-name">GUTIÉRREZ</div><div class="cwall-role">Inquiry · Argentina</div><div class="cwall-desc">Analogical evaluation of Malbec and torrontés. Upcycling potential in Mendoza surplus harvest communication.</div></div>
+<div class="cwall-card" style="cursor:pointer;border:1px dashed rgba(200,164,90,0.3);" onclick="location.href='mailto:hi@upcycledby.com?subject=Certification Enquiry'"><img class="cwall-seal" src="assets/cert-official.png" alt="YOUR NAME" style="opacity:0.38;"><div class="cwall-name">YOUR NAME</div><div class="cwall-role">Apply for Certification</div><div class="cwall-desc">Anyone trained in the Double Grip — to pendulate, to capture, to communicate.</div>
+      <a href="mailto:hi@upcycledby.com?subject=Certification Enquiry" class="cwall-apply-btn">Apply →</a></div>
+</div>
+  </div>
+</section>
+
+<!-- ═══ CTA ══════════════════════════════════════════ -->
+<section id="cta">
+  <div class="cta-inner reveal">
+    <div class="section-label" style="color:var(--gold); text-align:center; margin-bottom:1.5rem;">Get Certified</div>
+    <h2 class="cta-title">Your Waste Has<br>More to Give.</h2>
+    <p class="cta-subtitle">Join the producers who are turning overlooked resources into certified, high-value products — and making a verifiable difference to the planet.</p>
+    <div class="cta-btns">
+      <a href="mailto:hi@upcycledby.com?subject=Certification Enquiry" class="btn-primary">Apply for Certification</a>
+      <a href="mailto:hi@upcycledby.com" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo" style="display:flex;align-items:center;gap:0.7rem;">
+      <img src="assets/logo-upcycledby.png" alt="Upcycled By" style="width:32px;height:32px;object-fit:contain;filter:brightness(0) invert(1);opacity:0.6;" />
+      Upcycled By · Crichton-Fock
+    </div>
+    <ul class="footer-links">
+      <li><a href="#method">Method</a></li>
+      <li><a href="#certification">Certification</a></li>
+      <li><a href="#timeline">Research</a></li>
+      <li><a href="mailto:hi@upcycledby.com">Contact</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 Upcycled By. Developed at Örebro University, Campus Grythyttan.</div>
+  </div>
+</footer>
+
+<script>
+  // Sticky nav
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+  );
+  reveals.forEach(el => observer.observe(el));
+
+  // ── Language switcher ──────────────────────────────
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'sv,fr,es,zh-CN',
+      autoDisplay: false
+    }, 'google_translate_element');
+  }
+
+  function _setGTCookie(lang) {
+    var exp = 'expires=Fri, 31 Dec 2099 23:59:59 GMT';
+    var val = lang ? '/en/' + lang : '';
+    document.cookie = 'googtrans=' + val + '; ' + exp + '; path=/';
+    document.cookie = 'googtrans=' + val + '; ' + exp + '; path=/; domain=' + location.hostname;
+    document.cookie = 'googtrans=' + val + '; ' + exp + '; path=/; domain=.' + location.hostname;
+  }
+
+  function _markActive(lang) {
+    document.querySelectorAll('.lang-btn').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.lang === lang);
+    });
+  }
+
+  function setLang(lang) {
+    localStorage.setItem('siteLang', lang);
+    if (lang === 'en') {
+      _setGTCookie('');
+    } else {
+      _setGTCookie(lang);
+    }
+    location.reload();
+  }
+
+  // On load: mark the active button
+  (function() {
+    var saved = localStorage.getItem('siteLang') || 'en';
+    _markActive(saved);
+  })();
+</script>
+
+<!-- Google Translate widget -->
+<script>/* googleTranslateElementInit defined above */</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
