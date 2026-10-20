@@ -44,7 +44,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 3rem;
-      height: 68px;
+      height: 112px;
       background: transparent;
       transition: background var(--transition), box-shadow var(--transition);
     }
@@ -59,7 +59,7 @@
       text-decoration: none;
       color: var(--white);
     }
-    .nav-logo-icon { width: 68px; height: 68px; object-fit: contain; filter: brightness(0) invert(1); }
+    .nav-logo-icon { width: 96px; height: 96px; object-fit: contain; filter: brightness(0) invert(1); }
     .nav-logo-text {
       font-size: 0.85rem;
       font-weight: 600;
@@ -210,9 +210,6 @@
     .flow-arrow { color: rgba(255,255,255,0.35); font-size: 1.2rem; }
     .flow-seal {
       width: 160px; height: 160px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.08);
-      border: 2px solid rgba(200,164,90,0.5);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -791,7 +788,7 @@
     #clients { background: var(--cream-light); }
     .clients-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 1px;
       margin-top: 3.5rem;
       background: rgba(0,0,0,0.06);
@@ -803,7 +800,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       text-align: center;
       gap: 0.8rem;
     }
@@ -1788,6 +1785,51 @@
       .cur-tier-sub { display: none; }
     }
 
+    /* ─── RESPONSIVE PASS ───────────────────────── */
+    .nav-toggle { display:none; background:transparent; border:1px solid rgba(255,255,255,0.3); color:var(--white); font-size:0.65rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; padding:0 0.9rem; height:44px; cursor:pointer; margin-left:0.6rem; }
+    .nav-toggle:hover { border-color:var(--gold); color:var(--gold); }
+    #hero { padding-top: 9rem; }
+    @media (max-width: 1200px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: block; }
+      nav.open { background: var(--green); }
+      nav.open .nav-links {
+        display: flex; flex-direction: column; align-items: flex-start; gap: 0;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: var(--green); padding: 0.5rem 1.5rem 1.5rem;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+        max-height: calc(100vh - 100%); overflow-y: auto;
+      }
+      nav.open .nav-links li { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.08); }
+      nav.open .nav-links a { display: block; padding: 0.95rem 0; font-size: 0.78rem; }
+      .nav-right { display:flex; align-items:center; }
+    }
+    @media (max-width: 900px) {
+      .tier-num { grid-row: 1 / span 3; align-items: flex-start; padding: 1.5rem 0; font-size: 1.6rem; }
+      .tier-cell { grid-column: 2; }
+      .dual-circle, .mission-visual { max-width: 100%; }
+    }
+    @media (max-width: 700px) {
+      section { padding: 4.5rem 1.25rem; }
+      nav { height: 80px; padding: 0 1rem; }
+      .nav-logo-icon { width: 60px; height: 60px; }
+      .lang-switcher { margin-left: 0.5rem; gap: 0.2rem; }
+      .lang-btn { padding: 0.35rem 0.4rem; }
+      #hero { padding: 7rem 1.25rem 3rem; }
+      .dga-diagram { padding: 1.5rem 1rem; }
+      .dga-col { padding: 1.25rem; }
+      .dga-diagram-title { flex-wrap: wrap; text-align: center; }
+      .tier-row { grid-template-columns: 36px minmax(0,1fr); }
+      .tier-cell { padding: 1.2rem 1rem; }
+      .ref-yr-cell { padding-right: 0.8rem; }
+      .footer-links { flex-wrap: wrap; gap: 0.8rem 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      .nav-logo-text { display: none; }
+      .clients-grid { grid-template-columns: 1fr; }
+      .ml-card { max-width: none; }
+    }
   </style>
 </head>
 <body>
@@ -1795,10 +1837,10 @@
 <!-- ═══ NAV ═══════════════════════════════════════ -->
 <nav id="navbar">
   <a href="#hero" class="nav-logo">
-    <img class="nav-logo-icon" src="assets/logo-upcycledby.png" alt="Upcycled By seal" />
+    <img class="nav-logo-icon" src="assets/cert-official.png" alt="Upcycled By seal" />
     <span class="nav-logo-text">Upcycled By</span>
   </a>
-  <ul class="nav-links">
+  <ul class="nav-links" id="navLinks" onclick="if(event.target.tagName==='A'){var n=document.getElementById('navbar');n.classList.remove('open');var t=n.querySelector('.nav-toggle');t.textContent='Menu';t.setAttribute('aria-expanded','false');}">
     <li><a href="#method">The Method</a></li>
     <li><a href="#certification">Certification</a></li>
     <li><a href="#benefits">Benefits</a></li>
@@ -1809,12 +1851,15 @@
     <li><a href="#curation">Curation</a></li>
     <li><a href="#cta" class="nav-cta">Get Certified</a></li>
   </ul>
+  <div class="nav-right">
   <div class="lang-switcher" id="langSwitcher">
     <button class="lang-btn active" onclick="setLang('en')" data-lang="en">EN</button>
     <button class="lang-btn" onclick="setLang('sv')" data-lang="sv">SV</button>
     <button class="lang-btn" onclick="setLang('fr')" data-lang="fr">FR</button>
     <button class="lang-btn" onclick="setLang('es')" data-lang="es">ES</button>
     <button class="lang-btn" onclick="setLang('zh-CN')" data-lang="zh-CN">中文</button>
+  </div>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="navLinks" onclick="var n=document.getElementById('navbar');var o=n.classList.toggle('open');this.setAttribute('aria-expanded',o);this.textContent=o?'Close':'Menu';">Menu</button>
   </div>
 </nav>
 <div id="google_translate_element"></div>
@@ -1869,7 +1914,7 @@
             <div class="circle-desc">Measurable attributes — vision, odour, taste, tactile. Deductive precision.</div>
           </div>
           <div class="circle-overlap">
-            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDAgMTAwJz48Y2lyY2xlIGN4PSczNScgY3k9JzUwJyByPScyOCcgZmlsbD0nbm9uZScgc3Ryb2tlPSdyZ2JhKDIwMCwxNjQsOTAsMC43KScgc3Ryb2tlLXdpZHRoPScyLjUnLz48Y2lyY2xlIGN4PSc2NScgY3k9JzUwJyByPScyOCcgZmlsbD0nbm9uZScgc3Ryb2tlPSdyZ2JhKDIwMCwxNjQsOTAsMC43KScgc3Ryb2tlLXdpZHRoPScyLjUnLz48cGF0aCBkPSdNNTAgMjJRNDEgNTAgNTAgNzhRNTkgNTAgNTAgMjJaJyBmaWxsPSdyZ2JhKDIwMCwxNjQsOTAsMC4yKScvPjwvc3ZnPg==" alt="Double Grip" style="width:100%;height:100%;object-fit:contain;" />
+            <img src="assets/cert-official.png" alt="Upcycled By seal — Double Grip" style="width:100%;height:100%;object-fit:contain;" />
           </div>
           <div class="circle-analogical">
             <div class="circle-label">The Analogical Grip</div>
@@ -1972,9 +2017,9 @@
 
     <div class="dga-diagram reveal">
       <div class="dga-diagram-title">
-        <img class="dga-logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDAgMTAwJz48Y2lyY2xlIGN4PSczNScgY3k9JzUwJyByPScyOCcgZmlsbD0nbm9uZScgc3Ryb2tlPSdyZ2JhKDIwMCwxNjQsOTAsMC43KScgc3Ryb2tlLXdpZHRoPScyLjUnLz48Y2lyY2xlIGN4PSc2NScgY3k9JzUwJyByPScyOCcgZmlsbD0nbm9uZScgc3Ryb2tlPSdyZ2JhKDIwMCwxNjQsOTAsMC43KScgc3Ryb2tlLXdpZHRoPScyLjUnLz48cGF0aCBkPSdNNTAgMjJRNDEgNTAgNTAgNzhRNTkgNTAgNTAgMjJaJyBmaWxsPSdyZ2JhKDIwMCwxNjQsOTAsMC4yKScvPjwvc3ZnPg==" alt="Double Grip Analysis" />
+        <img class="dga-logo" src="assets/cert-official.png" alt="Double Grip Analysis" />
         Double Grip Analysis — The Two Registers
-        <img class="dga-logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDAgMTAwJz48Y2lyY2xlIGN4PSczNScgY3k9JzUwJyByPScyOCcgZmlsbD0nbm9uZScgc3Ryb2tlPSdyZ2JhKDIwMCwxNjQsOTAsMC43KScgc3Ryb2tlLXdpZHRoPScyLjUnLz48Y2lyY2xlIGN4PSc2NScgY3k9JzUwJyByPScyOCcgZmlsbD0nbm9uZScgc3Ryb2tlPSdyZ2JhKDIwMCwxNjQsOTAsMC43KScgc3Ryb2tlLXdpZHRoPScyLjUnLz48cGF0aCBkPSdNNTAgMjJRNDEgNTAgNTAgNzhRNTkgNTAgNTAgMjJaJyBmaWxsPSdyZ2JhKDIwMCwxNjQsOTAsMC4yKScvPjwvc3ZnPg==" alt="Double Grip Analysis" style="transform:scaleX(-1);" />
+        <img class="dga-logo" src="assets/cert-official.png" alt="Double Grip Analysis" />
       </div>
       <div class="dga-table">
         <div class="dga-col dga-col-left">
@@ -2429,7 +2474,7 @@
     </div>
 
     <div class="science-note reveal">
-      <img src="assets/logo-upcycledby.png" alt="Upcycled By seal" style="width:70px;height:70px;object-fit:contain;flex-shrink:0;filter:brightness(0) invert(1);opacity:0.8;" />
+      <img src="assets/cert-official.png" alt="Upcycled By seal" style="width:70px;height:70px;object-fit:contain;flex-shrink:0;filter:brightness(0) invert(1);opacity:0.8;" />
       <div class="science-note-body">
         <strong>The Double Grip Analysis</strong> was originally developed in Anders Crichton-Fock's (formerly Herdenstam) doctoral dissertation <em>"Den arbetande gommen"</em> (KTH, 2011) — one in a chain of research going back to 2003. It has since been validated across multiple disciplines: sensory science, cognitive psychology, food technology and hospitality management, in collaboration with Örebro University, Oxford University, KTH and Washington State University.
         <br><br>
@@ -2486,69 +2531,6 @@
       </div>
     </div>
 
-    <div class="reveal">
-      <div class="rg-board-title">Advisory Board</div>
-      <div class="board-grid">
-
-        <!-- Chairman spans 2 cols -->
-        <div class="board-card chairman">
-          <div class="board-role">Chairman · Founder</div>
-          <div class="board-name">Ass. Prof. Anders Crichton-Fock, PhD</div>
-          <div class="board-institution">School of Hospitality, Culinary Arts &amp; Meal Science · Campus Grythyttan, Örebro University, Sweden</div>
-          <div class="board-bio">Creator of the Double Grip Analysis. Doctoral dissertation (KTH, 2011): <em>"The Working Palate: the wine taster's double grip."</em> Research focus: combining analytical and analogical sensory approaches for understanding future meals, consumer preferences and food waste reduction. Formerly published as A.P.F. Herdenstam.</div>
-        </div>
-
-        <div class="board-card reveal">
-          <div class="board-role">Advisory Board</div>
-          <div class="board-name">Prof. Charles Spence, PhD</div>
-          <div class="board-institution">Crossmodal Research Laboratory, Dept. of Experimental Psychology · Oxford University, UK</div>
-          <div class="board-bio">Experimental psychologist specialising in multisensory design. Founded the Crossmodal Research Laboratory (1997). Author of 1,000+ academic articles and books including <em>Gastrophysics</em> (2017) and <em>Sensehacking</em> (2021).</div>
-        </div>
-
-        <div class="board-card reveal">
-          <div class="board-role">Advisory Board</div>
-          <div class="board-name">Prof. Robert J. Harrington, PhD</div>
-          <div class="board-institution">School of Hospitality Business Management · Washington State University, USA</div>
-          <div class="board-bio">Ivar B. Haglund Chair in Hospitality Business Management. PhD in Strategic Management. Former Dean at Nicholls State University. Research: food &amp; wine pairing, beverage innovation, hospitality strategies.</div>
-        </div>
-
-        <div class="board-card reveal">
-          <div class="board-role">Advisory Board</div>
-          <div class="board-name">Prof. Emeritus Ole G. Mouritsen, PhD</div>
-          <div class="board-institution">Dept. of Food Science · University of Copenhagen, Denmark</div>
-          <div class="board-bio">Physicist and professor of gastrophysics and culinary innovation. Author of 400+ scientific papers. DuPont Nutrition &amp; Health Science Medal (2016). President, Danish Gastronomical Academy; Director, Taste for Life research centre.</div>
-        </div>
-
-        <div class="board-card reveal">
-          <div class="board-role">Advisory Board</div>
-          <div class="board-name">Prof. Tuulia Hyötyläinen, PhD</div>
-          <div class="board-institution">School of Science and Technology · Örebro University, Sweden</div>
-          <div class="board-bio">Metabolomics researcher. Develops high-throughput methodologies using chromatographic methods and mass spectrometry. Expertise in non-targeted and targeted metabolite profiling and unknown compound identification.</div>
-        </div>
-
-        <div class="board-card reveal">
-          <div class="board-role">Advisory Board</div>
-          <div class="board-name">Researcher María Mora, PhD</div>
-          <div class="board-institution">BCCInnovation, Basque Culinary Center · Spain</div>
-          <div class="board-bio">Sensory scientist and product developer at the Gastronomy Technological Center. Doctoral research: emotional consumer responses to wine and beer. M.S. in Food Science and Technology.</div>
-        </div>
-
-        <div class="board-card reveal">
-          <div class="board-role">Advisory Board</div>
-          <div class="board-name">MW Tim Hanni</div>
-          <div class="board-institution">Calyber LLC · Washington State University &amp; Linfield University, USA</div>
-          <div class="board-bio">First American Master of Wine (1990). 50+ years wine industry experience. Creator of myVinotype.com. Author: <em>"Why You Like the Wines You Like."</em> Called "the wine anti-snob" by the Wall Street Journal.</div>
-        </div>
-
-        <div class="board-card reveal">
-          <div class="board-role">Advisory Board</div>
-          <div class="board-name">Elin Aronsen Beis</div>
-          <div class="board-institution">Foodloopz · Sweden</div>
-          <div class="board-bio">President &amp; Founder of Foodloopz. Food waste consultant specialising in sustainable food production and innovative circular solutions. Background in marketing, design and project management.</div>
-        </div>
-
-      </div>
-    </div>
   </div>
 </section>
 
@@ -2570,26 +2552,31 @@
         <div class="client-type">Museum &amp; Hospitality</div>
       </div>
       <div class="client-cell reveal reveal-delay-1">
-        <div class="client-icon logo-wide">
-          <img src="assets/grythyttan.png" alt="Grythyttan" />
+        <div class="client-icon logo-wide" style="overflow:hidden;">
+          <img src="assets/grythyttan.png" alt="Grythyttan" style="width:100%;height:100%;object-fit:cover;filter:none;transform:scale(1.32) translate(0,-1.5px);" />
         </div>
         <div class="client-name">Grythyttan</div>
         <div class="client-type">Culinary Science &amp; Innovation</div>
       </div>
       <div class="client-cell reveal reveal-delay-2">
-        <div class="client-icon logo-wide">
-          <img src="assets/orebro-uni-t.png" alt="Örebro Universitet" />
+        <div class="client-icon logo-wide" style="overflow:hidden;">
+          <img src="assets/orebro-uni-t.png" alt="Örebro Universitet" style="width:100%;height:100%;clip-path:inset(0 67% 0 0);transform:scale(2.3) translate(15.5px,0.8px);" />
         </div>
         <div class="client-name">Örebro Universitet</div>
         <div class="client-type">Academic Partner</div>
       </div>
       <div class="client-cell reveal reveal-delay-2">
-        <div class="client-icon logo-wide">
-          <img src="assets/foodloopz.png" alt="Foodloopz" />
+        <div class="client-icon logo-wide" style="overflow:hidden;">
+          <img src="assets/foodloopz.png" alt="Foodloopz" style="width:100%;height:100%;transform:scale(1.4);" />
         </div>
         <div class="client-name">Foodloopz</div>
         <div class="client-type">Food Waste Platform</div>
       </div>
+      <a href="https://crichtonfock.com" target="_blank" rel="noopener" class="client-cell reveal reveal-delay-2" style="text-decoration:none;">
+        <div class="client-icon" style="color:var(--white);font-size:0.95rem;font-weight:600;letter-spacing:0.08em;">CF</div>
+        <div class="client-name">CF Innovation</div>
+        <div class="client-type">Owner of Upcycled By</div>
+      </a>
     </div>
 
     <div class="clients-cta reveal">
@@ -3300,7 +3287,7 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-logo" style="display:flex;align-items:center;gap:0.7rem;">
-      <img src="assets/logo-upcycledby.png" alt="Upcycled By" style="width:32px;height:32px;object-fit:contain;filter:brightness(0) invert(1);opacity:0.6;" />
+      <img src="assets/cert-official.png" alt="Upcycled By" style="width:32px;height:32px;object-fit:contain;filter:brightness(0) invert(1);opacity:0.6;" />
       Upcycled By · Crichton-Fock
     </div>
     <ul class="footer-links">
@@ -3309,7 +3296,7 @@
       <li><a href="#timeline">Research</a></li>
       <li><a href="mailto:hi@upcycledby.com">Contact</a></li>
     </ul>
-    <div class="footer-copy">© 2026 Upcycled By. Developed at Örebro University, Campus Grythyttan.</div>
+    <div class="footer-copy">© 2026 Upcycled By — a venture of <a href="https://crichtonfock.com" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">CF Innovation</a>, Stockholm. Developed at Örebro University, Campus Grythyttan.</div>
   </div>
 </footer>
 
